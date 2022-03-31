@@ -1,20 +1,121 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <div class="calc-main">
+    <div class="units-selector">
+      <ion-modal trigger="list-opener-1">
+            <ng-template>
+              <ion-content>
+                <ion-list>
+                  <ion-item *ngFor="let unit of units">
+                    <ion-button (click)="onMeasurementSelect(unit.id)">{{ unit.name }}</ion-button>
+                  </ion-item>
+                </ion-list>
+              </ion-content>
+            </ng-template>
+          </ion-modal>
+      <ion-modal trigger="list-opener-2">
+            <ng-template>
+              <ion-content>
+                <ion-list>
+                  <ion-item *ngFor="let unit of units">
+                    <ion-button (click)="onMeasurementSelect(unit.id)">{{ unit.name }}</ion-button>
+                  </ion-item>
+                </ion-list>
+              </ion-content>
+            </ng-template>
+          </ion-modal>
+      <ion-row>
+        <ion-col>
+          <ion-button id="list-opener-1" (click)="onModalOpen(1)">Click to open modal</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button id="list-opener-2" (click)="onModalOpen(0)">Click to open modal</ion-button>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div class="calc-display">
+      <ion-row>
+        <ion-col>
+          <ion-label>{{ dataService.firstval }}</ion-label>
+        </ion-col>
+        <ion-col>
+          <ion-label>{{ dataService.display }}</ion-label>
+        </ion-col>
+      </ion-row>
+      <!-- <ion-input type="number" [(ngModel)]="dataService.display" class="ion-text-end"></ion-input>
+      <ion-input type="number" [(ngModel)]="dataService.firstval" class="ion-text-end"></ion-input> -->
+    </div>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-button shape="round" color="light" *ngIf="!isc" (click)="click('ac')">AC</ion-button>
+          <ion-button shape="round" color="light" *ngIf="isc" (click)="click('c')">C</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button shape="round" color="light" (click)="click('+/-')">+/-</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button shape="round" color="light" (click)="click('%')">%</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button shape="round" color="warning" (click)="click(':')">:</ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button shape="round" color="dark" (click)="click('7')">7</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button shape="round" color="dark" (click)="click('8')">8</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button shape="round" color="dark" (click)="click('9')">9</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button shape="round" color="warning" (click)="click('X')">X</ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button shape="round" color="dark" (click)="click('4')">4</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button shape="round" color="dark" (click)="click('5')">5</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button shape="round" color="dark" (click)="click('6')">6</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button shape="round" color="warning" (click)="click('-')">-</ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button shape="round" color="dark" (click)="click('1')">1</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button shape="round" color="dark" (click)="click('2')">2</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button shape="round" color="dark" (click)="click('3')">3</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button shape="round" color="warning" (click)="click('+')">+</ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="3">
+          <ion-button shape="round" color="dark" (click)="click('Convert')" class="double-width">Convert</ion-button>
+        </ion-col>
+        <ion-col size="3">
+          <ion-button shape="round" color="dark" (click)="click('0')" class="double-width">0</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button shape="round" color="dark" (click)="click(',')">,</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button shape="round" color="warning" (click)="click('=')">=</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </div>
 </ion-content>

@@ -12,9 +12,6 @@ import { DataService } from '../data.service';
   styleUrls: ['./units-modal.component.scss'],
 })
 export class UnitsModalComponent implements OnInit {
-
-  @Input() selectedUnitsKeys: Array<string>;
-  @Input() selectedUnitsTypes: Array<number>;
   // @Input() selectedNumber: number;
 
   // selectedUnits: Array<number> = [];
@@ -23,7 +20,7 @@ export class UnitsModalComponent implements OnInit {
 
   selectedUnit?: number;
   onUnitSelect(str: string) {
-    this.selectedUnit = this.selectedUnitsTypes[this.selectedUnitsKeys.indexOf(str)];
+    this.selectedUnit = this.dataService.selectedUnitsTypes[this.dataService.selectedUnitsKeys.indexOf(str)];
     console.log(this.selectedUnit);
     this.modalCtrl.dismiss();
     this.setUnits();

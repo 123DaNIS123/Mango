@@ -12,9 +12,11 @@ export class DataService {
   selectedUnits = SelectedUNITS;
   selectedIndex = 0;
 
-  // values from HomePage:
-  display: string = '0';
-  firstval: number = null;
+  // values used in HomePage:
+  display: number = 0;
+  firstval: number = 0;
+  selectedUnitsKeys: Array<string> = [];
+  selectedUnitsTypes: Array<number> = [];
 
   constructor() { }
 
@@ -32,7 +34,7 @@ export class DataService {
 
   convert() {
     console.log("this.display after converting", this.display, this.firstval, this.selectedUnits[1], this.selectedUnits[0])
-    this.display = ((this.firstval * this.selectedUnits[1]) / this.selectedUnits[0]).toString();
+    this.display = (this.firstval * this.selectedUnits[1]) / this.selectedUnits[0];
     console.log("this.display after converting", this.display, this.firstval)
   }
 }

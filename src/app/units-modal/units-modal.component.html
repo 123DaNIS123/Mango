@@ -1,5 +1,5 @@
 <li>
-  <button *ngFor="let item of selectedUnitsKeys" (click)="onUnitSelect(item)">
+  <button *ngFor="let item of dataService.selectedUnitsKeys" (click)="onUnitSelect(item)">
     {{ item }}
   </button>  
 </li>

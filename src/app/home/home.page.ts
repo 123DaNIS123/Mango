@@ -6,7 +6,7 @@ import { UnitsModalComponent } from '../units-modal/units-modal.component';
 
 // import { stringify } from 'querystring';
 
-import { units } from '../units';
+import { units, ex_num } from '../units';
 
 import { DataService } from '../data.service';
 
@@ -61,17 +61,17 @@ export class HomePage {
   click(val: any) {
     switch (val) {
       case 'ac':
-        this.dataService.display = 0;
+        this.dataService.number_1.val = 0;
         this.dataService.firstval = 0;
         this.operator = null;
         this.newcursor = false;
         break;
       case 'c':
-        this.dataService.display = 0;
+        this.dataService.number_1.val = 0;
         this.isc = false;
         break;
       case '+/-':
-        this.dataService.display *= (-1);
+        this.dataService.number_1.val *= (-1);
         break;
       case '%':
         this.addpercent();
@@ -129,7 +129,7 @@ export class HomePage {
         this.addcomma();
         break;
       case 'Convert':
-        this.convertFromTo();
+        this.dataService.convert();
         break;
     }
   }
@@ -145,42 +145,42 @@ export class HomePage {
   addnumber(nbr: string) {
     if (nbr === '0') {
       if (this.newcursor === true) {
-        this.dataService.display = 0;
+        this.dataService.number_1.val = 0;
         this.newcursor = false;
-      } else if (this.dataService.display !== 0) {
+      } else if (this.dataService.number_1.val !== 0) {
         if (this.iscomma === true) {
-          this.dataService.display = parseFloat(`${this.dataService.display.toString()}.${nbr}`);
+          this.dataService.number_1.val = parseFloat(`${this.dataService.number_1.val.toString()}.${nbr}`);
         } else {
-          this.dataService.display = parseInt(this.dataService.display.toString() + nbr);
+          this.dataService.number_1.val = parseInt(this.dataService.number_1.val.toString() + nbr);
         }
-      } else if (this.dataService.display === 0) {
+      } else if (this.dataService.number_1.val === 0) {
         if (this.iscomma === true) {
-          this.dataService.display = parseFloat(`${this.dataService.display.toString()}.${nbr}`);
+          this.dataService.number_1.val = parseFloat(`${this.dataService.number_1.val.toString()}.${nbr}`);
         }
       }
     } else {
       if (this.newcursor === true) {
-        this.dataService.display = parseInt(nbr, 0);
+        this.dataService.number_1.val = parseInt(nbr, 0);
         this.newcursor = false;
-      } else if (this.dataService.display === 0) {
+      } else if (this.dataService.number_1.val === 0) {
         if (this.iscomma === true) {
-          if (this.dataService.display.toString().indexOf('.') > -1) {
-            this.dataService.display = parseFloat(this.dataService.display.toString() + nbr);
+          if (this.dataService.number_1.val.toString().indexOf('.') > -1) {
+            this.dataService.number_1.val = parseFloat(this.dataService.number_1.val.toString() + nbr);
           } else {
-            this.dataService.display = parseFloat(`${this.dataService.display.toString()}.${nbr}`);
+            this.dataService.number_1.val = parseFloat(`${this.dataService.number_1.val.toString()}.${nbr}`);
           }
         } else {
-          this.dataService.display = parseInt(nbr);
+          this.dataService.number_1.val = parseInt(nbr);
         }
       } else {
         if (this.iscomma === true) {
-          if (this.dataService.display.toString().indexOf('.') > -1) {
-            this.dataService.display = parseFloat(this.dataService.display.toString() + nbr);
+          if (this.dataService.number_1.val.toString().indexOf('.') > -1) {
+            this.dataService.number_1.val = parseFloat(this.dataService.number_1.val.toString() + nbr);
           } else {
-            this.dataService.display = parseFloat(`${this.dataService.display.toString()}.${nbr}`);
+            this.dataService.number_1.val = parseFloat(`${this.dataService.number_1.val.toString()}.${nbr}`);
           }
         } else {
-          this.dataService.display = parseInt(this.dataService.display.toString() + nbr);
+          this.dataService.number_1.val = parseInt(this.dataService.number_1.val.toString() + nbr);
         }
       }
     }
@@ -189,7 +189,7 @@ export class HomePage {
 
   addpercent() {
     this.iscomma = false;
-    this.dataService.display /= 100;
+    this.dataService.number_1.val /= 100;
   }
 
   addoperator(op: string) {
@@ -204,25 +204,25 @@ export class HomePage {
   calclast() {
     switch (this.operator) {
       case ':':
-        this.dataService.firstval /= this.dataService.display;
+        this.dataService.firstval /= this.dataService.number_1.val;
         break;
       case 'X':
-        this.dataService.firstval *= this.dataService.display;
+        this.dataService.firstval *= this.dataService.number_1.val;
         break;
       case '-':
-        this.dataService.firstval -= this.dataService.display;
+        this.dataService.firstval -= this.dataService.number_1.val;
         break;
       case '+':
-        this.dataService.firstval +=  this.dataService.display;
+        this.dataService.firstval +=  this.dataService.number_1.val;
         break;
     }
-    this.dataService.display = this.dataService.firstval;
+    this.dataService.number_1.val = this.dataService.firstval;
   }
 
-  convertFromTo() {
-    // this.firstval = this.firstval * UnitsModalComponent["getSelectedNumberUnit"][1];
-    this.dataService.convert();
-  }
+  // convertFromTo() {
+  //   // this.firstval = this.firstval * UnitsModalComponent["getSelectedNumberUnit"][1];
+  //   this.dataService.convert();
+  // }
 
   public dataUpdate(num: number) {
     console.log("this is that number :D)", num);

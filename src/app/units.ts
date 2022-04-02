@@ -4,10 +4,21 @@ export interface UnitsList {
     unitsRecord: Record<string, number>
 }
 
-export interface SelectedNumber {
+// export interface SelectedNumber {
+//     id: number,
+//     unitsRecord: Record<string, number>
+// }
+
+export interface ex_num {
     id: number,
-    unitsRecord: Record<string, number>
+    val: number,
+    unit_id: number,
+    // unit_key: string,
+    unit_val_pres: number,
+    unit_val_past: number
 }
+
+
 
 export const units = [
     {

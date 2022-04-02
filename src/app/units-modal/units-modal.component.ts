@@ -22,8 +22,8 @@ export class UnitsModalComponent implements OnInit {
   onUnitSelect(str: string) {
     this.selectedUnit = this.dataService.selectedUnitsTypes[this.dataService.selectedUnitsKeys.indexOf(str)];
     console.log(this.selectedUnit);
-    this.modalCtrl.dismiss();
     this.setUnits();
+    this.modalCtrl.dismiss();
   }
 
   // get SelectedNumberUnit() {

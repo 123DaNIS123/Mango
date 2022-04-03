@@ -77,7 +77,7 @@ export class HomePage {
     this.is_comma = false;
     this.operator_ = null;
   }
-
+ 
   calculate_() {
     switch (this.operator_) {
       case "+":

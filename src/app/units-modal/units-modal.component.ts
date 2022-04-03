@@ -19,10 +19,12 @@ export class UnitsModalComponent implements OnInit {
   constructor(private modalCtrl: ModalController, private dataService: DataService) {}
 
   selectedUnit?: number;
+  selectedUnitType?: string;
   onUnitSelect(str: string) {
     this.selectedUnit = this.dataService.selectedUnitsTypes[this.dataService.selectedUnitsKeys.indexOf(str)];
+    this.selectedUnitType = str;
     console.log(this.selectedUnit);
-    this.setUnits();
+    this.dataService.setSelectedUnits(this.selectedUnit, this.selectedUnitType);
     this.modalCtrl.dismiss();
   }
 
@@ -34,9 +36,6 @@ export class UnitsModalComponent implements OnInit {
   //   this.selectedUnits = this.dataService.getSelectedUnits();
   // }
 
-  setUnits(): void {
-    this.dataService.setSelectedUnits(this.selectedUnit);
-  }
 
   ngOnInit() {
     // this.getUnits()

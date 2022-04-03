@@ -20,18 +20,28 @@ export class DataService {
   number_1: ex_num = {
     id: 1,
     val: 0,
+    firstval: 0,
+    disp: 0,
     unit_id: 1,
     unit_val_pres: 1,
-    unit_val_past: 1
+    unit_val_past: 1,
+    unit_type: "mol"
   }
 
-  number_2: ex_num = {
-    id: 1,
-    val: 0,
+  number_0: ex_num = {
+    id: 0,
+    val: 100,
+    firstval: 100,
+    disp: 100,
     unit_id: 1,
     unit_val_pres: 1,
-    unit_val_past: 1
+    unit_val_past: 1,
+    unit_type: "mol"
   }
+
+  
+  numbers_array = [this.number_0, this.number_1];
+
 
   firstval: number = 0;
   selectedUnitsKeys: Array<string> = [];
@@ -43,28 +53,23 @@ export class DataService {
   //   return this.selectedUnits
   // }
 
-  setSelectedUnits(numNumber: number) {
-    this.selectedUnits.splice(this.selectedIndex, 0, numNumber);
-  }
-
-  setSelectedIndex(numIndex: number) {
-    this.selectedIndex = numIndex;
+  setSelectedUnits(numNumber: number, numType: string) {
+    // this.selectedUnits.splice(this.selectedIndex, 0, numNumber);
+    this.numbers_array[this.selectedIndex].unit_val_past = this.numbers_array[this.selectedIndex].unit_val_pres;
+    this.numbers_array[this.selectedIndex].unit_val_pres = numNumber;
+    this.numbers_array[this.selectedIndex].val = (this.numbers_array[this.selectedIndex].val 
+      * this.numbers_array[this.selectedIndex].unit_val_past) 
+      / this.numbers_array[this.selectedIndex].unit_val_pres
+      this.numbers_array[this.selectedIndex].unit_type = numType;
   }
 
   convert() {
-    console.log("this.display after converting", this.number_1, this.firstval, this.selectedUnits[1], this.selectedUnits[0])
+    console.log("this.display after converting", this.number_1, this.firstval, this.selectedUnits[1], this.selectedUnits[0]);
     this.number_1.val = (this.firstval * this.selectedUnits[1]) / this.selectedUnits[0];
-    console.log("this.display after converting", this.number_1, this.firstval)
+    console.log("this.display after converting", this.number_1, this.firstval);
   }
 
   on_num_change() {
-    this.number_2.val = (this.number_1.val * this.number_1.unit_val_pres) / this.number_2.unit_val_pres;
-  }
-
-  on_unit_change(exnum: ex_num, ptnum: number) {
-    exnum.unit_val_past = exnum.unit_val_pres;
-    exnum.unit_val_pres = ptnum;
-    exnum.val = (exnum.val * exnum.unit_val_past) / exnum.unit_val_pres;
-    return exnum;
+    this.number_0.val = (this.number_1.val * this.number_1.unit_val_pres) / this.number_0.unit_val_pres;
   }
 }

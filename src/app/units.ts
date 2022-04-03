@@ -12,10 +12,13 @@ export interface UnitsList {
 export interface ex_num {
     id: number,
     val: number,
+    firstval: number,
+    disp: number,
     unit_id: number,
     // unit_key: string,
     unit_val_pres: number,
-    unit_val_past: number
+    unit_val_past: number,
+    unit_type: string
 }
 
 
@@ -25,11 +28,11 @@ export const units = [
         id: 1,
         name: "moles",
         unitsRecord: {
-            "moles": 1,
-            "decimoles": 10 ** (-1),
-            "cantimoles": 10 ** (-2),
-            "millimoles": 10 ** (-3),
-            "micromoles": 10 ** (-6),
+            "mol": 1,
+            "decimol": 10 ** (-1),
+            "cantimol": 10 ** (-2),
+            "millimol": 10 ** (-3),
+            "micromol": 10 ** (-6),
           }
     },
     {

@@ -5,6 +5,10 @@ import { Observable, of } from 'rxjs';
 import { registerLocaleData } from '@angular/common';
 import { units, ex_num } from './units';
 
+import { ModalController } from '@ionic/angular';
+import { UnitsModalComponent } from './units-modal/units-modal.component';
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -46,6 +50,8 @@ export class DataService {
   firstval: number = 0;
   selectedUnitsKeys: Array<string> = [];
   selectedUnitsTypes: Array<number> = [];
+
+  unitsRecord: Record<string, number>;
 
   constructor() { }
 

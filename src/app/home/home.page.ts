@@ -3,6 +3,7 @@ import { ModalController } from '@ionic/angular';
 
 //ModalPages Import:
 import { UnitsModalComponent } from '../units-modal/units-modal.component';
+import { TypeModalComponent } from '../type-modal/type-modal.component';
 
 // import { stringify } from 'querystring';
 
@@ -124,26 +125,33 @@ export class HomePage {
     this.dataService.selNum = num;
   }
 
-  onMeasurementSelect(num: number) {
-    this.dataService.selectedUnitsKeys = [];
-    this.dataService.selectedUnitsTypes = [];
-    this.unitsRecord = units[num - 1].unitsRecord
-    for (let item in this.unitsRecord) {
-      this.dataService.selectedUnitsKeys.push(item)
-      this.dataService.selectedUnitsTypes.push(this.unitsRecord[item])
-      console.log("it happened");
-    }
-    console.log(this.dataService.selectedUnitsKeys, this.dataService.selectedUnitsTypes);
-    this.ModalCtrl.dismiss();
-    this.presentModal();
-  };
-
   async presentModal() {
     const modal = await this.ModalCtrl.create({
-      component: UnitsModalComponent
+      component: TypeModalComponent
     });
     return await modal.present();
   }
+
+  // onMeasurementSelect(num: number) {
+  //   this.dataService.selectedUnitsKeys = [];
+  //   this.dataService.selectedUnitsTypes = [];
+  //   this.unitsRecord = units[num - 1].unitsRecord
+  //   for (let item in this.unitsRecord) {
+  //     this.dataService.selectedUnitsKeys.push(item)
+  //     this.dataService.selectedUnitsTypes.push(this.unitsRecord[item])
+  //     console.log("it happened");
+  //   }
+  //   console.log(this.dataService.selectedUnitsKeys, this.dataService.selectedUnitsTypes);
+  //   this.ModalCtrl.dismiss();
+  //   this.presentModal();
+  // };
+
+  // async presentModal() {
+  //   const modal = await this.ModalCtrl.create({
+  //     component: UnitsModalComponent
+  //   });
+  //   return await modal.present();
+  // }
 
 
   //replacing all 

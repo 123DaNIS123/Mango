@@ -11,7 +11,7 @@ import { units, ex_num } from './units';
 export class DataService {
 
   selectedUnits = SelectedUNITS;
-  selectedIndex = 0;
+  selNum = 1;
 
   units = units;
 
@@ -54,13 +54,16 @@ export class DataService {
   // }
 
   setSelectedUnits(numNumber: number, numType: string) {
-    // this.selectedUnits.splice(this.selectedIndex, 0, numNumber);
-    this.numbers_array[this.selectedIndex].unit_val_past = this.numbers_array[this.selectedIndex].unit_val_pres;
-    this.numbers_array[this.selectedIndex].unit_val_pres = numNumber;
-    this.numbers_array[this.selectedIndex].val = (this.numbers_array[this.selectedIndex].val 
-      * this.numbers_array[this.selectedIndex].unit_val_past) 
-      / this.numbers_array[this.selectedIndex].unit_val_pres
-      this.numbers_array[this.selectedIndex].unit_type = numType;
+    // this.selectedUnits.splice(this.selNum, 0, numNumber);
+    this.numbers_array[this.selNum].unit_val_past = this.numbers_array[this.selNum].unit_val_pres;
+    this.numbers_array[this.selNum].unit_val_pres = numNumber;
+    console.log("calc val while converting", this.numbers_array[this.selNum].val)
+    this.numbers_array[this.selNum].val = (this.numbers_array[this.selNum].val 
+      * this.numbers_array[this.selNum].unit_val_past) 
+      / this.numbers_array[this.selNum].unit_val_pres
+      this.numbers_array[this.selNum].unit_type = numType;
+    this.numbers_array[this.selNum].disp = this.numbers_array[this.selNum].val;
+    console.log("calc val after converting", this.numbers_array[this.selNum].val)
   }
 
   convert() {

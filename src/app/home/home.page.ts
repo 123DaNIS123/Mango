@@ -31,29 +31,35 @@ export class HomePage {
   is_c = false;
   is_comma = false;
   some_degree = 0;
+  should_calculate = false;
 
   constructor(private ModalCtrl: ModalController, private dataService: DataService) {
   }
 
   add_number_(num: number) {
     if (this.is_comma === false) {
-      if (this.is_first_number_ === false) {this.dataService.numbers_array[1].disp = this.dataService.numbers_array[1].disp * 10 + num}
-      else {this.dataService.numbers_array[1].disp = 0;
-        this.dataService.numbers_array[1].disp = this.dataService.numbers_array[1].disp * 10 + num;
+      if (this.is_first_number_ === false) {this.dataService.numbers_array[this.dataService.selNum].disp = this.dataService.numbers_array[this.dataService.selNum].disp * 10 + num}
+      else {this.dataService.numbers_array[this.dataService.selNum].disp = 0;
+        this.dataService.numbers_array[this.dataService.selNum].disp = this.dataService.numbers_array[this.dataService.selNum].disp * 10 + num;
         this.is_first_number_ = false;
         this.is_c = true;}}
     else {
       this.some_degree += 1
-      this.dataService.numbers_array[1].disp += (num / 10**this.some_degree)
+      this.dataService.numbers_array[this.dataService.selNum].disp += (num / 10**this.some_degree)
     }
-    if (this.operator_) {this.dataService.numbers_array[1].firstval = this.dataService.numbers_array[1].disp}
-    else {this.dataService.numbers_array[1].val = this.dataService.numbers_array[1].disp}
+    if (this.operator_) {this.dataService.numbers_array[this.dataService.selNum].firstval = this.dataService.numbers_array[this.dataService.selNum].disp}
+    else {this.dataService.numbers_array[this.dataService.selNum].val = this.dataService.numbers_array[this.dataService.selNum].disp}
+    this.should_calculate = true;
   }
 
   add_operator_(str: string) {
+    if (this.operator_ && this.should_calculate) {
+      this.calculate_();
+      console.log("calculated", this.dataService.numbers_array[this.dataService.selNum].disp);
+    }
     this.is_first_number_ = true;
     this.operator_ = str;
-    this.dataService.numbers_array[1].firstval = 0;
+    this.dataService.numbers_array[this.dataService.selNum].firstval = 0;
   }
 
   add_comma_() {
@@ -62,15 +68,20 @@ export class HomePage {
     }
   }
 
+  number_selecting(num: number) {
+    this.dataService.selNum = num;
+    console.log("selected number", this.dataService.selNum);
+  }
+
   clear_(kind: string) {
     if (kind === "AC") {
-      this.dataService.numbers_array[1].val = 0;
-      this.dataService.numbers_array[1].firstval = 0;
-      this.dataService.numbers_array[1].disp = this.dataService.numbers_array[1].val;
+      this.dataService.numbers_array[this.dataService.selNum].val = 0;
+      this.dataService.numbers_array[this.dataService.selNum].firstval = 0;
+      this.dataService.numbers_array[this.dataService.selNum].disp = this.dataService.numbers_array[this.dataService.selNum].val;
     }
     else {
-      this.dataService.numbers_array[1].firstval = 0;
-      this.dataService.numbers_array[1].disp = this.dataService.numbers_array[1].val;
+      this.dataService.numbers_array[this.dataService.selNum].firstval = 0;
+      this.dataService.numbers_array[this.dataService.selNum].disp = this.dataService.numbers_array[this.dataService.selNum].val;
     }
     this.is_first_number_ = true;
     this.is_c = false;
@@ -81,35 +92,36 @@ export class HomePage {
   calculate_() {
     switch (this.operator_) {
       case "+":
-        console.log("+ case before", this.dataService.numbers_array[1].val, this.dataService.numbers_array[1].firstval);
-        this.dataService.numbers_array[1].val = this.dataService.numbers_array[1].val + this.dataService.numbers_array[1].firstval;
-        console.log("+ case after", this.dataService.numbers_array[1].val, this.dataService.numbers_array[1].firstval);
+        console.log("+ case before", this.dataService.numbers_array[this.dataService.selNum].val, this.dataService.numbers_array[this.dataService.selNum].firstval);
+        this.dataService.numbers_array[this.dataService.selNum].val = this.dataService.numbers_array[this.dataService.selNum].val + this.dataService.numbers_array[this.dataService.selNum].firstval;
+        console.log("+ case after", this.dataService.numbers_array[this.dataService.selNum].val, this.dataService.numbers_array[this.dataService.selNum].firstval);
         break
       case "-":
-        this.dataService.numbers_array[1].val -= this.dataService.numbers_array[1].firstval;
+        this.dataService.numbers_array[this.dataService.selNum].val -= this.dataService.numbers_array[this.dataService.selNum].firstval;
         break
       case "*":
-        this.dataService.numbers_array[1].val *= this.dataService.numbers_array[1].firstval;
+        this.dataService.numbers_array[this.dataService.selNum].val *= this.dataService.numbers_array[this.dataService.selNum].firstval;
         break
       case "/":
-        this.dataService.numbers_array[1].val /= this.dataService.numbers_array[1].firstval;
+        this.dataService.numbers_array[this.dataService.selNum].val /= this.dataService.numbers_array[this.dataService.selNum].firstval;
         break
       case "+/-":
-        this.dataService.numbers_array[1].val *= -1;
+        this.dataService.numbers_array[this.dataService.selNum].val *= -1;
         break
       case "%":
-        this.dataService.numbers_array[1].val /= 100;
+        this.dataService.numbers_array[this.dataService.selNum].val /= 100;
         break
     }
-    this.dataService.numbers_array[1].disp = this.dataService.numbers_array[1].val;
+    this.dataService.numbers_array[this.dataService.selNum].disp = this.dataService.numbers_array[this.dataService.selNum].val;
     this.is_first_number_ = true;
     this.is_c = false;
     this.is_comma = false;
+    this.should_calculate = false;
   }
 
   // selectedNumber?: number;
   onModalOpen(num: number) {
-    this.dataService.selectedIndex = num;
+    this.dataService.selNum = num;
   }
 
   onMeasurementSelect(num: number) {
@@ -139,17 +151,17 @@ export class HomePage {
   click(val: any) {
     switch (val) {
       case 'ac':
-        this.dataService.numbers_array[1].val = 0;
-        this.dataService.numbers_array[1].firstval = 0;
+        this.dataService.numbers_array[this.dataService.selNum].val = 0;
+        this.dataService.numbers_array[this.dataService.selNum].firstval = 0;
         this.operator = null;
         this.newcursor = false;
         break;
       case 'c':
-        this.dataService.numbers_array[1].val = 0;
+        this.dataService.numbers_array[this.dataService.selNum].val = 0;
         this.isc = false;
         break;
       case '+/-':
-        this.dataService.numbers_array[1].val *= (-1);
+        this.dataService.numbers_array[this.dataService.selNum].val *= (-1);
         break;
       case '%':
         this.addpercent();
@@ -167,7 +179,7 @@ export class HomePage {
         this.addoperator('+');
         break;
       case '=':
-        if (this.dataService.numbers_array[1].firstval !== null && this.operator !== null) {
+        if (this.dataService.numbers_array[this.dataService.selNum].firstval !== null && this.operator !== null) {
           this.calclast();
           console.log("passedd");
         }
@@ -223,42 +235,42 @@ export class HomePage {
   addnumber(nbr: string) {
     if (nbr === '0') {
       if (this.newcursor === true) {
-        this.dataService.numbers_array[1].val = 0;
+        this.dataService.numbers_array[this.dataService.selNum].val = 0;
         this.newcursor = false;
-      } else if (this.dataService.numbers_array[1].val !== 0) {
+      } else if (this.dataService.numbers_array[this.dataService.selNum].val !== 0) {
         if (this.iscomma === true) {
-          this.dataService.numbers_array[1].val = parseFloat(`${this.dataService.numbers_array[1].val.toString()}.${nbr}`);
+          this.dataService.numbers_array[this.dataService.selNum].val = parseFloat(`${this.dataService.numbers_array[this.dataService.selNum].val.toString()}.${nbr}`);
         } else {
-          this.dataService.numbers_array[1].val = parseInt(this.dataService.numbers_array[1].val.toString() + nbr);
+          this.dataService.numbers_array[this.dataService.selNum].val = parseInt(this.dataService.numbers_array[this.dataService.selNum].val.toString() + nbr);
         }
-      } else if (this.dataService.numbers_array[1].val === 0) {
+      } else if (this.dataService.numbers_array[this.dataService.selNum].val === 0) {
         if (this.iscomma === true) {
-          this.dataService.numbers_array[1].val = parseFloat(`${this.dataService.numbers_array[1].val.toString()}.${nbr}`);
+          this.dataService.numbers_array[this.dataService.selNum].val = parseFloat(`${this.dataService.numbers_array[this.dataService.selNum].val.toString()}.${nbr}`);
         }
       }
     } else {
       if (this.newcursor === true) {
-        this.dataService.numbers_array[1].val = parseInt(nbr, 0);
+        this.dataService.numbers_array[this.dataService.selNum].val = parseInt(nbr, 0);
         this.newcursor = false;
-      } else if (this.dataService.numbers_array[1].val === 0) {
+      } else if (this.dataService.numbers_array[this.dataService.selNum].val === 0) {
         if (this.iscomma === true) {
-          if (this.dataService.numbers_array[1].val.toString().indexOf('.') > -1) {
-            this.dataService.numbers_array[1].val = parseFloat(this.dataService.numbers_array[1].val.toString() + nbr);
+          if (this.dataService.numbers_array[this.dataService.selNum].val.toString().indexOf('.') > -1) {
+            this.dataService.numbers_array[this.dataService.selNum].val = parseFloat(this.dataService.numbers_array[this.dataService.selNum].val.toString() + nbr);
           } else {
-            this.dataService.numbers_array[1].val = parseFloat(`${this.dataService.numbers_array[1].val.toString()}.${nbr}`);
+            this.dataService.numbers_array[this.dataService.selNum].val = parseFloat(`${this.dataService.numbers_array[this.dataService.selNum].val.toString()}.${nbr}`);
           }
         } else {
-          this.dataService.numbers_array[1].val = parseInt(nbr);
+          this.dataService.numbers_array[this.dataService.selNum].val = parseInt(nbr);
         }
       } else {
         if (this.iscomma === true) {
-          if (this.dataService.numbers_array[1].val.toString().indexOf('.') > -1) {
-            this.dataService.numbers_array[1].val = parseFloat(this.dataService.numbers_array[1].val.toString() + nbr);
+          if (this.dataService.numbers_array[this.dataService.selNum].val.toString().indexOf('.') > -1) {
+            this.dataService.numbers_array[this.dataService.selNum].val = parseFloat(this.dataService.numbers_array[this.dataService.selNum].val.toString() + nbr);
           } else {
-            this.dataService.numbers_array[1].val = parseFloat(`${this.dataService.numbers_array[1].val.toString()}.${nbr}`);
+            this.dataService.numbers_array[this.dataService.selNum].val = parseFloat(`${this.dataService.numbers_array[this.dataService.selNum].val.toString()}.${nbr}`);
           }
         } else {
-          this.dataService.numbers_array[1].val = parseInt(this.dataService.numbers_array[1].val.toString() + nbr);
+          this.dataService.numbers_array[this.dataService.selNum].val = parseInt(this.dataService.numbers_array[this.dataService.selNum].val.toString() + nbr);
         }
       }
     }
@@ -267,7 +279,7 @@ export class HomePage {
 
   addpercent() {
     this.iscomma = false;
-    this.dataService.numbers_array[1].val /= 100;
+    this.dataService.numbers_array[this.dataService.selNum].val /= 100;
   }
 
   addoperator(op: string) {
@@ -282,23 +294,23 @@ export class HomePage {
   calclast() {
     switch (this.operator) {
       case ':':
-        this.dataService.numbers_array[1].firstval /= this.dataService.numbers_array[1].val;
+        this.dataService.numbers_array[this.dataService.selNum].firstval /= this.dataService.numbers_array[this.dataService.selNum].val;
         break;
       case 'X':
-        this.dataService.numbers_array[1].firstval *= this.dataService.numbers_array[1].val;
+        this.dataService.numbers_array[this.dataService.selNum].firstval *= this.dataService.numbers_array[this.dataService.selNum].val;
         break;
       case '-':
-        this.dataService.numbers_array[1].firstval -= this.dataService.numbers_array[1].val;
+        this.dataService.numbers_array[this.dataService.selNum].firstval -= this.dataService.numbers_array[this.dataService.selNum].val;
         break;
       case '+':
-        this.dataService.numbers_array[1].firstval +=  this.dataService.numbers_array[1].val;
+        this.dataService.numbers_array[this.dataService.selNum].firstval +=  this.dataService.numbers_array[this.dataService.selNum].val;
         break;
     }
-    this.dataService.numbers_array[1].val = this.dataService.numbers_array[1].firstval;
+    this.dataService.numbers_array[this.dataService.selNum].val = this.dataService.numbers_array[this.dataService.selNum].firstval;
   }
 
   // convertFromTo() {
-  //   // this.numbers_array[1].firstval = this.numbers_array[1].firstval * UnitsModalComponent["getSelectedNumberUnit"][1];
+  //   // this.numbers_array[this.dataService.selNum].firstval = this.numbers_array[this.dataService.selNum].firstval * UnitsModalComponent["getSelectedNumberUnit"][this.dataService.selNum];
   //   this.dataService.convert();
   // }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 
 import { units } from '../units';
 import { DataService } from '../data.service';
@@ -10,13 +10,11 @@ import { ModalController } from '@ionic/angular';
   templateUrl: './type-modal.component.html',
   styleUrls: ['./type-modal.component.scss'],
 })
-export class TypeModalComponent implements OnInit {
+export class TypeModalComponent{
 
   units = units;
 
   constructor(private dataService: DataService, private ModalCtrl: ModalController) { }
-
-  ngOnInit() {}
 
   onMeasurementSelect(num: number) {
     this.dataService.selectedUnitsKeys = [];

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component} from '@angular/core';
 import { ModalController } from '@ionic/angular';
 // import { HomePage } from '../home/home.page';
 
@@ -11,17 +11,13 @@ import { DataService } from '../data.service';
   templateUrl: './units-modal.component.html',
   styleUrls: ['./units-modal.component.scss'],
 })
-export class UnitsModalComponent implements OnInit {
-  // @Input() selectedNumber: number;
-
-  // selectedUnits: Array<number> = [];
-
+export class UnitsModalComponent{
   constructor(private modalCtrl: ModalController, private dataService: DataService) {}
 
   selectedUnit?: number;
   selectedUnitType?: string;
   onUnitSelect(str: string) {
-    this.dataService.selectedTypeIndex = this.dataService.selectedUnitsKeys.indexOf(str);
+    // this.dataService.selectedTypeIndex = this.dataService.selectedUnitsKeys.indexOf(str);
     this.selectedUnit = this.dataService.selectedUnitsTypes[this.dataService.selectedUnitsKeys.indexOf(str)];
     this.selectedUnitType = str;
     console.log(this.selectedUnit);
@@ -36,9 +32,4 @@ export class UnitsModalComponent implements OnInit {
   // getUnits(): void {
   //   this.selectedUnits = this.dataService.getSelectedUnits();
   // }
-
-
-  ngOnInit() {
-    // this.getUnits()
-  }
 }

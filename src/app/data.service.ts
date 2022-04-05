@@ -51,6 +51,8 @@ export class DataService {
   selectedUnitsKeys: Array<string> = [];
   selectedUnitsTypes: Array<number> = [];
 
+  selectedTypeIndex: number;
+
   unitsRecord: Record<string, number>;
 
   constructor() { }

@@ -70,7 +70,7 @@ export class HomePage {
   }
 
   number_selecting(num: number) {
-    this.dataService.selNum = num;
+    if (num !== 0) {this.dataService.selNum = num;}
     console.log("selected number", this.dataService.selNum);
   }
 
@@ -123,12 +123,20 @@ export class HomePage {
   // selectedNumber?: number;
   onModalOpen(num: number) {
     this.dataService.selNum = num;
-    this.presentModal();
+    if (num !== 0) {this.presentTypeModal();}
+    else {this.presentUnitsModal();}
   }
 
-  async presentModal() {
+  async presentTypeModal() {
     const modal = await this.ModalCtrl.create({
       component: TypeModalComponent
+    });
+    return await modal.present();
+  }
+
+  async presentUnitsModal() {
+    const modal = await this.ModalCtrl.create({
+      component: UnitsModalComponent
     });
     return await modal.present();
   }

@@ -1,6 +1,6 @@
-<li>
-  <button *ngFor="let item of dataService.selectedUnitsKeys" (click)="onUnitSelect(item)">
-    {{ item }}
-  </button>  
-</li>
+<ion-list>
+  <ion-item *ngFor="let item of dataService.selectedUnitsKeys">
+    <ion-button (click)="onUnitSelect(item)">{{ item }}</ion-button>
+  </ion-item>
+</ion-list>
 

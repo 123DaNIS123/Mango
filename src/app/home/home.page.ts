@@ -123,6 +123,7 @@ export class HomePage {
   // selectedNumber?: number;
   onModalOpen(num: number) {
     this.dataService.selNum = num;
+    this.presentModal();
   }
 
   async presentModal() {

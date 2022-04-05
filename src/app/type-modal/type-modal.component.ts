@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { units } from '../units';
-
 import { DataService } from '../data.service';
-
 import { UnitsModalComponent } from '../units-modal/units-modal.component';
-
 import { ModalController } from '@ionic/angular';
 
 @Component({
@@ -15,16 +12,16 @@ import { ModalController } from '@ionic/angular';
 })
 export class TypeModalComponent implements OnInit {
 
+  units = units;
+
   constructor(private dataService: DataService, private ModalCtrl: ModalController) { }
 
   ngOnInit() {}
 
-  unitsRecord: Record<string, number>;
-
   onMeasurementSelect(num: number) {
     this.dataService.selectedUnitsKeys = [];
     this.dataService.selectedUnitsTypes = [];
-    this.unitsRecord = units[num - 1].unitsRecord
+    this.dataService.unitsRecord = units[num - 1].unitsRecord
     for (let item in this.dataService.unitsRecord) {
       this.dataService.selectedUnitsKeys.push(item)
       this.dataService.selectedUnitsTypes.push(this.dataService.unitsRecord[item])
@@ -33,7 +30,6 @@ export class TypeModalComponent implements OnInit {
     console.log(this.dataService.selectedUnitsKeys, this.dataService.selectedUnitsTypes);
     this.ModalCtrl.dismiss();
     this.presentModal();
-    console.log("1111");
   };
 
   async presentModal() {

@@ -36,11 +36,13 @@ export class HomePage implements OnInit{
         this.is_first_number = false;
         this.is_c = true;}}
     else {
-      if (this.is_first_number === false) {this.checkIfFloat();
-      this.dataService.numbers_array[this.dataService.selNum].disp += (num / 10**this.some_degree);}
+      if (this.is_first_number === false) {
+      this.dataService.numbers_array[this.dataService.selNum].disp += (num / 10**this.some_degree)
+      this.some_degree += 1}
       else {this.dataService.numbers_array[this.dataService.selNum].disp += (num / 10);
         this.is_c = true;
-        this.is_first_number = false;}
+        this.is_first_number = false;
+        this.some_degree += 1}
     }
     if (this.operator) {this.dataService.numbers_array[this.dataService.selNum].firstval = this.dataService.numbers_array[this.dataService.selNum].disp}
     else {this.dataService.numbers_array[this.dataService.selNum].val = this.dataService.numbers_array[this.dataService.selNum].disp}
@@ -60,11 +62,12 @@ export class HomePage implements OnInit{
   }
 
   add_comma() {
-    if (this.some_degree === 0) {
-      this.some_degree = 1;
-    }
-    else if (this.is_first_number) {
+    if (this.is_first_number) {
       this.dataService.numbers_array[this.dataService.selNum].disp = 0
+      this.some_degree = 1;
+      console.log("add_comma")
+    }
+    else if (this.some_degree === 0) {
       this.some_degree = 1;
     }
   }

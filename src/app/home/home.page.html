@@ -3,10 +3,10 @@
     <div class="units-selector">
       <ion-row>
         <ion-col>
-          <ion-button id="list-opener-1" (click)="onModalOpen(1)">Click to open modal</ion-button>
+          <ion-button id="list-opener-1" (click)="onModalOpen(1)">Select the unit</ion-button>
         </ion-col>
         <ion-col>
-          <ion-button id="list-opener-2" (click)="onModalOpen(0)">Click to open modal</ion-button>
+          <ion-button id="list-opener-2" (click)="onModalOpen(0)">Select the unit</ion-button>
         </ion-col>
       </ion-row>
     </div>
@@ -31,6 +31,12 @@
         </ion-col>
         <ion-col>
           <ion-button shape="round" color="light" (click)="percent()">%</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button shape="round" color="warning" (click)="add_operator('^')">^</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button shape="round" color="warning" (click)="add_operator('log')">LOGx(Y)</ion-button>
         </ion-col>
         <ion-col>
           <ion-button shape="round" color="warning" (click)="add_operator('/')">/</ion-button>

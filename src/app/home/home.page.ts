@@ -29,15 +29,18 @@ export class HomePage implements OnInit{
   constructor(private ModalCtrl: ModalController, private dataService: DataService) { }
 
   add_number(num: number) {
-    if (this.is_comma === false) {
+    if (this.some_degree === 0) {
       if (this.is_first_number === false) {this.dataService.numbers_array[this.dataService.selNum].disp = this.dataService.numbers_array[this.dataService.selNum].disp * 10 + num}
       else {this.dataService.numbers_array[this.dataService.selNum].disp = 0;
-        this.dataService.numbers_array[this.dataService.selNum].disp = this.dataService.numbers_array[this.dataService.selNum].disp * 10 + num;
+        this.dataService.numbers_array[this.dataService.selNum].disp = num;
         this.is_first_number = false;
         this.is_c = true;}}
     else {
-      this.some_degree += 1
-      this.dataService.numbers_array[this.dataService.selNum].disp += (num / 10**this.some_degree)
+      if (this.is_first_number === false) {this.checkIfFloat();
+      this.dataService.numbers_array[this.dataService.selNum].disp += (num / 10**this.some_degree);}
+      else {this.dataService.numbers_array[this.dataService.selNum].disp += (num / 10);
+        this.is_c = true;
+        this.is_first_number = false;}
     }
     if (this.operator) {this.dataService.numbers_array[this.dataService.selNum].firstval = this.dataService.numbers_array[this.dataService.selNum].disp}
     else {this.dataService.numbers_array[this.dataService.selNum].val = this.dataService.numbers_array[this.dataService.selNum].disp}
@@ -58,7 +61,11 @@ export class HomePage implements OnInit{
 
   add_comma() {
     if (this.some_degree === 0) {
-      this.is_comma = true;
+      this.some_degree = 1;
+    }
+    else if (this.is_first_number) {
+      this.dataService.numbers_array[this.dataService.selNum].disp = 0
+      this.some_degree = 1;
     }
   }
 
@@ -70,8 +77,9 @@ export class HomePage implements OnInit{
     if (kind === "AC") {
       this.dataService.numbers_array[this.dataService.selNum].val = 0;
       this.dataService.numbers_array[this.dataService.selNum].firstval = 0;
-      this.dataService.numbers_array[this.dataService.selNum].disp = this.dataService.numbers_array[this.dataService.selNum].val;
+      this.dataService.numbers_array[this.dataService.selNum].disp = 0;
       this.dataService.on_num_change(this.dataService.selNum)
+      this.should_calculate = false;
     }
     else {
       this.dataService.numbers_array[this.dataService.selNum].firstval = 0;
@@ -80,7 +88,8 @@ export class HomePage implements OnInit{
     }
     this.is_first_number = true;
     this.is_c = false;
-    this.is_comma = false;
+    // this.is_comma = false;
+    this.some_degree = 0;
     this.operator = null;
   }
 
@@ -88,6 +97,7 @@ export class HomePage implements OnInit{
     this.dataService.numbers_array[this.dataService.selNum].val /= 100;
     this.dataService.numbers_array[this.dataService.selNum].disp = this.dataService.numbers_array[this.dataService.selNum].val;
     this.dataService.on_num_change(this.dataService.selNum);
+    this.checkIfFloat();
   }
 
   plus_minus_switch() {
@@ -100,7 +110,7 @@ export class HomePage implements OnInit{
     switch (this.operator) {
       case "+":
         console.log("+ case before", this.dataService.numbers_array[this.dataService.selNum].val, this.dataService.numbers_array[this.dataService.selNum].firstval);
-        this.dataService.numbers_array[this.dataService.selNum].val = this.dataService.numbers_array[this.dataService.selNum].val + this.dataService.numbers_array[this.dataService.selNum].firstval;
+        this.dataService.numbers_array[this.dataService.selNum].val += this.dataService.numbers_array[this.dataService.selNum].firstval;
         console.log("+ case after", this.dataService.numbers_array[this.dataService.selNum].val, this.dataService.numbers_array[this.dataService.selNum].firstval);
         break
       case "-":
@@ -112,6 +122,9 @@ export class HomePage implements OnInit{
       case "/":
         this.dataService.numbers_array[this.dataService.selNum].val /= this.dataService.numbers_array[this.dataService.selNum].firstval;
         break
+      case "^":
+        this.dataService.numbers_array[this.dataService.selNum].val **= this.dataService.numbers_array[this.dataService.selNum].firstval;
+        break
       case "+/-":
         this.dataService.numbers_array[this.dataService.selNum].val *= -1;
         break
@@ -122,9 +135,17 @@ export class HomePage implements OnInit{
     this.dataService.numbers_array[this.dataService.selNum].disp = this.dataService.numbers_array[this.dataService.selNum].val;
     this.is_first_number = true;
     this.is_c = false;
-    this.is_comma = false;
+    // this.is_comma = false;
+    this.some_degree = 0;
+    this.checkIfFloat();
     this.should_calculate = false;
     this.dataService.on_num_change(this.dataService.selNum);
+  }
+
+  checkIfFloat() {
+    if (!Number.isInteger(this.dataService.numbers_array[this.dataService.selNum].disp)) {
+      this.some_degree = this.dataService.numbers_array[this.dataService.selNum].disp.toString().length - this.dataService.numbers_array[this.dataService.selNum].disp.toString().indexOf(".")
+    }
   }
 
   onModalOpen(num: number) {

@@ -30,9 +30,11 @@ export class HomePage implements OnInit{
 
   add_number(num: number) {
     if (this.some_degree === 0) {
-      if (this.is_first_number === false) {this.dataService.numbers_array[this.dataService.selNum].disp = (+this.dataService.numbers_array[this.dataService.selNum].disp * 10 + num).toString()}
-      else {this.dataService.numbers_array[this.dataService.selNum].disp = "0";
+      if (this.is_first_number === false) {
+        this.dataService.numbers_array[this.dataService.selNum].disp += num.toString()}
+      else {
         this.dataService.numbers_array[this.dataService.selNum].disp = num.toString();
+        console.log(this.dataService.numbers_array[this.dataService.selNum].disp, "!)!)!)))!")
         this.is_first_number = false;
         this.is_c = true;}}
     else {

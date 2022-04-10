@@ -63,17 +63,24 @@ export class DataService{
   //   return this.selectedUnits
   // }
 
-  setSelectedUnits(numNumber: number, numType: string) {
-    // this.selectedUnits.splice(this.translateNum, 0, numNumber);
-    this.numbers_array[this.translateNum].unit_val_past = this.numbers_array[this.translateNum].unit_val_pres;
-    this.numbers_array[this.translateNum].unit_val_pres = numNumber;
-    console.log("calc val while converting", this.numbers_array[this.translateNum].val)
-    this.numbers_array[this.translateNum].val = (this.numbers_array[this.translateNum].val 
-      * this.numbers_array[this.translateNum].unit_val_past) 
-      / this.numbers_array[this.translateNum].unit_val_pres
-      this.numbers_array[this.translateNum].unit_type = numType;
-    this.numbers_array[this.translateNum].disp = this.numbers_array[this.translateNum].val;
-    console.log("calc val after converting", this.numbers_array[this.translateNum].val)
+  setSelectedUnits(numNumber: number, numType: string, trNum: number) {
+    this.numbers_array[trNum].unit_val_past = this.numbers_array[trNum].unit_val_pres;
+    this.numbers_array[trNum].unit_val_pres = numNumber;
+    console.log("++++++++calc val while converting", this.numbers_array[trNum].val)
+    console.log("unit_val_past", this.numbers_array[trNum].unit_val_past)
+    console.log("unit_val_pres", this.numbers_array[trNum].unit_val_pres)
+    console.log("unit_type", this.numbers_array[trNum].unit_type)
+    console.log("disp", this.numbers_array[trNum].disp)
+    this.numbers_array[trNum].val = (this.numbers_array[trNum].val 
+      * this.numbers_array[trNum].unit_val_past) 
+      / this.numbers_array[trNum].unit_val_pres
+      this.numbers_array[trNum].unit_type = numType;
+    this.numbers_array[trNum].disp = this.numbers_array[trNum].val;
+    console.log("++++++++calc val after converting", this.numbers_array[trNum].val)
+    console.log("unit_val_past", this.numbers_array[trNum].unit_val_past)
+    console.log("unit_val_pres", this.numbers_array[trNum].unit_val_pres)
+    console.log("unit_type", this.numbers_array[trNum].unit_type)
+    console.log("disp", this.numbers_array[trNum].disp)
   }
 
   // convert() {

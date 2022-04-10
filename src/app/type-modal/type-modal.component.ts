@@ -19,13 +19,18 @@ export class TypeModalComponent{
   onMeasurementSelect(num: number) {
     this.dataService.selectedUnitsKeys = [];
     this.dataService.selectedUnitsTypes = [];
-    this.dataService.unitsRecord = units[num - 1].unitsRecord
-    for (let item in this.dataService.unitsRecord) {
+    let unitsRecordforIteration = units[num - 1].unitsRecord
+    for (let item in unitsRecordforIteration) {
       this.dataService.selectedUnitsKeys.push(item)
-      this.dataService.selectedUnitsTypes.push(this.dataService.unitsRecord[item])
+      this.dataService.selectedUnitsTypes.push(unitsRecordforIteration[item])
       console.log("it happened");
     }
-    console.log(this.dataService.selectedUnitsKeys, this.dataService.selectedUnitsTypes);
+    if (this.dataService.unitsRecord !== units[num - 1].unitsRecord && this.dataService.translateNum !== 0) {
+      console.log(this.dataService.selectedUnitsTypes[0]);
+      this.dataService.setSelectedUnits(this.dataService.selectedUnitsTypes[0], this.dataService.selectedUnitsKeys[0], 0);
+      console.log("ifed");
+    }
+    this.dataService.unitsRecord = units[num - 1].unitsRecord;
     this.ModalCtrl.dismiss();
     this.presentModal();
   };

@@ -21,7 +21,7 @@ export class UnitsModalComponent{
     this.selectedUnit = this.dataService.selectedUnitsTypes[this.dataService.selectedUnitsKeys.indexOf(str)];
     this.selectedUnitType = str;
     console.log(this.selectedUnit);
-    this.dataService.setSelectedUnits(this.selectedUnit, this.selectedUnitType);
+    this.dataService.setSelectedUnits(this.selectedUnit, this.selectedUnitType, this.dataService.translateNum);
     this.modalCtrl.dismiss();
   }
 

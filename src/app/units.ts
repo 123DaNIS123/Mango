@@ -13,7 +13,7 @@ export interface ex_num {
     id: number,
     val: number,
     firstval: number,
-    disp: number,
+    disp: string,
     unit_id: number,
     // unit_key: string,
     unit_val_pres: number,

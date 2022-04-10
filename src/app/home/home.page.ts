@@ -30,22 +30,21 @@ export class HomePage implements OnInit{
 
   add_number(num: number) {
     if (this.some_degree === 0) {
-      if (this.is_first_number === false) {this.dataService.numbers_array[this.dataService.selNum].disp = this.dataService.numbers_array[this.dataService.selNum].disp * 10 + num}
-      else {this.dataService.numbers_array[this.dataService.selNum].disp = 0;
-        this.dataService.numbers_array[this.dataService.selNum].disp = num;
+      if (this.is_first_number === false) {this.dataService.numbers_array[this.dataService.selNum].disp = (+this.dataService.numbers_array[this.dataService.selNum].disp * 10 + num).toString()}
+      else {this.dataService.numbers_array[this.dataService.selNum].disp = "0";
+        this.dataService.numbers_array[this.dataService.selNum].disp = num.toString();
         this.is_first_number = false;
         this.is_c = true;}}
     else {
       if (this.is_first_number === false) {
-      this.dataService.numbers_array[this.dataService.selNum].disp += (num / 10**this.some_degree)
-      this.some_degree += 1}
-      else {this.dataService.numbers_array[this.dataService.selNum].disp += (num / 10);
+      this.dataService.numbers_array[this.dataService.selNum].disp += num.toString();}
+      else {this.dataService.numbers_array[this.dataService.selNum].disp += num.toString();
         this.is_c = true;
         this.is_first_number = false;
         this.some_degree += 1}
     }
-    if (this.operator) {this.dataService.numbers_array[this.dataService.selNum].firstval = this.dataService.numbers_array[this.dataService.selNum].disp}
-    else {this.dataService.numbers_array[this.dataService.selNum].val = this.dataService.numbers_array[this.dataService.selNum].disp}
+    if (this.operator) {this.dataService.numbers_array[this.dataService.selNum].firstval = +this.dataService.numbers_array[this.dataService.selNum].disp}
+    else {this.dataService.numbers_array[this.dataService.selNum].val = +this.dataService.numbers_array[this.dataService.selNum].disp}
     this.should_calculate = true;
     this.dataService.on_num_change(this.dataService.selNum)
   }
@@ -63,11 +62,12 @@ export class HomePage implements OnInit{
 
   add_comma() {
     if (this.is_first_number) {
-      this.dataService.numbers_array[this.dataService.selNum].disp = 0
+      this.dataService.numbers_array[this.dataService.selNum].disp = "0."
       this.some_degree = 1;
       console.log("add_comma")
     }
     else if (this.some_degree === 0) {
+      this.dataService.numbers_array[this.dataService.selNum].disp += "."
       this.some_degree = 1;
     }
   }
@@ -80,13 +80,13 @@ export class HomePage implements OnInit{
     if (kind === "AC") {
       this.dataService.numbers_array[this.dataService.selNum].val = 0;
       this.dataService.numbers_array[this.dataService.selNum].firstval = 0;
-      this.dataService.numbers_array[this.dataService.selNum].disp = 0;
+      this.dataService.numbers_array[this.dataService.selNum].disp = "0";
       this.dataService.on_num_change(this.dataService.selNum)
       this.should_calculate = false;
     }
     else {
       this.dataService.numbers_array[this.dataService.selNum].firstval = 0;
-      this.dataService.numbers_array[this.dataService.selNum].disp = this.dataService.numbers_array[this.dataService.selNum].val;
+      this.dataService.numbers_array[this.dataService.selNum].disp = this.dataService.numbers_array[this.dataService.selNum].val.toString();
       this.dataService.on_num_change(this.dataService.selNum)
     }
     this.is_first_number = true;
@@ -98,14 +98,14 @@ export class HomePage implements OnInit{
 
   percent() {
     this.dataService.numbers_array[this.dataService.selNum].val /= 100;
-    this.dataService.numbers_array[this.dataService.selNum].disp = this.dataService.numbers_array[this.dataService.selNum].val;
+    this.dataService.numbers_array[this.dataService.selNum].disp = this.dataService.numbers_array[this.dataService.selNum].val.toString();
     this.dataService.on_num_change(this.dataService.selNum);
     this.checkIfFloat();
   }
 
   plus_minus_switch() {
     this.dataService.numbers_array[this.dataService.selNum].val *= -1;
-    this.dataService.numbers_array[this.dataService.selNum].disp = this.dataService.numbers_array[this.dataService.selNum].val;
+    this.dataService.numbers_array[this.dataService.selNum].disp = this.dataService.numbers_array[this.dataService.selNum].val.toString();
     this.dataService.on_num_change(this.dataService.selNum);
   }
  
@@ -135,7 +135,7 @@ export class HomePage implements OnInit{
         this.dataService.numbers_array[this.dataService.selNum].val /= 100;
         break
     }
-    this.dataService.numbers_array[this.dataService.selNum].disp = this.dataService.numbers_array[this.dataService.selNum].val;
+    this.dataService.numbers_array[this.dataService.selNum].disp = this.dataService.numbers_array[this.dataService.selNum].val.toString();
     this.is_first_number = true;
     this.is_c = false;
     // this.is_comma = false;
@@ -147,7 +147,7 @@ export class HomePage implements OnInit{
 
   checkIfFloat() {
     if (!Number.isInteger(this.dataService.numbers_array[this.dataService.selNum].disp)) {
-      this.some_degree = this.dataService.numbers_array[this.dataService.selNum].disp.toString().length - this.dataService.numbers_array[this.dataService.selNum].disp.toString().indexOf(".")
+      this.some_degree = this.dataService.numbers_array[this.dataService.selNum].disp.length - this.dataService.numbers_array[this.dataService.selNum].disp.indexOf(".")
     }
   }
 

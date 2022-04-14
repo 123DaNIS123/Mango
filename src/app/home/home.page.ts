@@ -10,6 +10,7 @@ import { TypeModalComponent } from '../type-modal/type-modal.component';
 import { units} from '../units';
 
 import { DataService } from '../data.service';
+import { TouchSequence } from 'selenium-webdriver';
 
 @Component({
   selector: 'app-home',
@@ -25,27 +26,41 @@ export class HomePage implements OnInit{
   is_comma = false;
   some_degree = 0;
   should_calculate = false;
+  equals_pressed = false;
 
   constructor(private ModalCtrl: ModalController, private dataService: DataService) { }
 
   add_number(num: number) {
-    if (this.some_degree === 0) {
-      if (this.is_first_number === false) {
-        this.dataService.numbers_array[this.dataService.selNum].disp += num.toString()}
-      else {
-        this.dataService.numbers_array[this.dataService.selNum].disp = num.toString();
-        console.log(this.dataService.numbers_array[this.dataService.selNum].disp, "!)!)!)))!")
-        this.is_first_number = false;
-        this.is_c = true;}}
+    if (this.is_first_number === false || this.dataService.numbers_array[this.dataService.selNum].disp.indexOf(".") !== -1) {
+      this.dataService.numbers_array[this.dataService.selNum].disp += num.toString()}
     else {
-      if (this.is_first_number === false) {
-      this.dataService.numbers_array[this.dataService.selNum].disp += num.toString();}
-      else {this.dataService.numbers_array[this.dataService.selNum].disp += num.toString();
-        this.is_c = true;
-        this.is_first_number = false;
-        this.some_degree += 1}
-    }
-    if (this.operator) {this.dataService.numbers_array[this.dataService.selNum].firstval = +this.dataService.numbers_array[this.dataService.selNum].disp}
+      this.dataService.numbers_array[this.dataService.selNum].disp = num.toString();
+      console.log(this.dataService.numbers_array[this.dataService.selNum].disp, "!)!)!)))!")
+      this.is_c = true;
+      this.is_first_number = false;}
+    // 
+    // if (this.some_degree === 0) {
+    //   if (this.is_first_number === false) {
+    //     this.dataService.numbers_array[this.dataService.selNum].disp += num.toString()}
+    //   else {
+    //     this.dataService.numbers_array[this.dataService.selNum].disp = ""
+    //     this.dataService.numbers_array[this.dataService.selNum].disp = num.toString();
+    //     console.log(this.dataService.numbers_array[this.dataService.selNum].disp, "!)!)!)))!")
+    //     this.is_c = true;
+    //     this.is_first_number = false;}
+    //   }
+    // 
+    // else {
+    //   if (this.is_first_number === false) {
+    //   this.dataService.numbers_array[this.dataService.selNum].disp += num.toString();}
+    //   else {
+    //     this.dataService.numbers_array[this.dataService.selNum].disp = "0."
+    //     this.dataService.numbers_array[this.dataService.selNum].disp = num.toString();
+    //     console.log(this.dataService.numbers_array[this.dataService.selNum].disp, "!)!)!)))!")
+    //     this.is_c = true;
+    //     this.is_first_number = false;}
+    // }
+    if (!this.equals_pressed) {this.dataService.numbers_array[this.dataService.selNum].firstval = +this.dataService.numbers_array[this.dataService.selNum].disp}
     else {this.dataService.numbers_array[this.dataService.selNum].val = +this.dataService.numbers_array[this.dataService.selNum].disp}
     this.should_calculate = true;
     this.dataService.on_num_change(this.dataService.selNum)
@@ -54,7 +69,7 @@ export class HomePage implements OnInit{
   add_operator(str: string) {
     if (this.operator && this.should_calculate) {
       this.calculate();
-      console.log("calculated", this.dataService.numbers_array[this.dataService.selNum].disp);
+      console.log("calculated!@!" + this.dataService.numbers_array[this.dataService.selNum].disp);
     }
     this.is_first_number = true;
     this.operator = str;
@@ -68,7 +83,7 @@ export class HomePage implements OnInit{
       this.some_degree = 1;
       console.log("add_comma")
     }
-    else if (this.some_degree === 0) {
+    else if (this.dataService.numbers_array[this.dataService.selNum].disp.indexOf(".") !== -1) {
       this.dataService.numbers_array[this.dataService.selNum].disp += "."
       this.some_degree = 1;
     }
@@ -111,7 +126,7 @@ export class HomePage implements OnInit{
     this.dataService.on_num_change(this.dataService.selNum);
   }
  
-  calculate() {
+  calculate(source: number = 1) {
     switch (this.operator) {
       case "+":
         console.log("+ case before", this.dataService.numbers_array[this.dataService.selNum].val, this.dataService.numbers_array[this.dataService.selNum].firstval);
@@ -137,19 +152,28 @@ export class HomePage implements OnInit{
         this.dataService.numbers_array[this.dataService.selNum].val /= 100;
         break
     }
+    if (source === 0) {
+      this.equals_pressed = true      
+    }
+    else {
+      this.equals_pressed = false
+    }
     this.dataService.numbers_array[this.dataService.selNum].disp = this.dataService.numbers_array[this.dataService.selNum].val.toString();
     this.is_first_number = true;
     this.is_c = false;
     // this.is_comma = false;
     this.some_degree = 0;
+    this.dataService.numbers_array[this.dataService.selNum].firstval = 0;
     this.checkIfFloat();
     this.should_calculate = false;
     this.dataService.on_num_change(this.dataService.selNum);
   }
 
   checkIfFloat() {
-    if (!Number.isInteger(this.dataService.numbers_array[this.dataService.selNum].disp)) {
+    // if (!Number.isInteger(this.dataService.numbers_array[this.dataService.selNum].disp)) {
+    if (this.dataService.numbers_array[this.dataService.selNum].disp.indexOf(".") !== -1) {
       this.some_degree = this.dataService.numbers_array[this.dataService.selNum].disp.length - this.dataService.numbers_array[this.dataService.selNum].disp.indexOf(".")
+      console.log("CheckIfFloat: " + this.some_degree)
     }
   }
 

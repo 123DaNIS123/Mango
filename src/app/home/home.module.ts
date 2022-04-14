@@ -7,6 +7,7 @@ import { HomePage } from './home.page';
 import { HomePageRoutingModule } from './home-routing.module';
 import { UnitsModalComponent } from '../units-modal/units-modal.component';
 import { TypeModalComponent } from '../type-modal/type-modal.component';
+import { UnitsTwoModalComponent } from '../units-two-modal/units-two-modal.component';
 
 
 @NgModule({
@@ -16,8 +17,8 @@ import { TypeModalComponent } from '../type-modal/type-modal.component';
     IonicModule,
     HomePageRoutingModule
   ],
-  declarations: [HomePage, UnitsModalComponent, TypeModalComponent],
-  entryComponents: [UnitsModalComponent, TypeModalComponent]
+  declarations: [HomePage, UnitsModalComponent, TypeModalComponent, UnitsTwoModalComponent],
+  entryComponents: [UnitsModalComponent, TypeModalComponent, UnitsTwoModalComponent]
 
 })
 export class HomePageModule {}

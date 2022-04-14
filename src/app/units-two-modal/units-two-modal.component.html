@@ -1,0 +1,16 @@
+<ion-row>
+  <ion-col>
+    <ion-list>
+      <ion-item *ngFor="let item of dataService.selectedUnitsKeys[0]">
+        <ion-button (click)="onUnitOneSelect(item)">{{ item }}</ion-button>
+      </ion-item>
+    </ion-list>
+  </ion-col>
+  <ion-col>
+    <ion-list>
+      <ion-item *ngFor="let item of dataService.selectedUnitsKeys[1]">
+        <ion-button (click)="onUnitSecondSelect(item)">{{ item }}</ion-button>
+      </ion-item>
+    </ion-list>
+  </ion-col>
+</ion-row>

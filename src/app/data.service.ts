@@ -50,8 +50,8 @@ export class DataService{
 
 
   firstval: number = 0;
-  selectedUnitsKeys: Array<string> = [];
-  selectedUnitsTypes: Array<number> = [];
+  selectedUnitsKeys: Array<any> = [];
+  selectedUnitsTypes: Array<any> = [];
 
   // selectedTypeIndex: number;
 

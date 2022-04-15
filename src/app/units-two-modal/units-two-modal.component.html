@@ -1,8 +1,11 @@
+<ion-button (click)="this.modalCtrl.dismiss()">
+  Close
+</ion-button>
 <ion-row>
   <ion-col>
     <ion-list>
       <ion-item *ngFor="let item of dataService.selectedUnitsKeys[0]">
-        <ion-button (click)="onUnitOneSelect(item)">{{ item }}</ion-button>
+        <ion-button (click)="onUnitFirstSelect(item)">{{ item }}</ion-button>
       </ion-item>
     </ion-list>
   </ion-col>

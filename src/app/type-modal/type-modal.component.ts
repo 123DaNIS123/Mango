@@ -18,7 +18,7 @@ export class TypeModalComponent{
   constructor(private dataService: DataService, private ModalCtrl: ModalController) { }
 
   onMeasurementSelect(num: number) {
-    if (num !== 3) {
+    if (num !== 3 && num !== 4) {
       this.dataService.selectedUnitsKeys = [];
       this.dataService.selectedUnitsTypes = [];
       let unitsRecordforIteration = units[num - 1].unitsRecord
@@ -40,24 +40,29 @@ export class TypeModalComponent{
       this.dataService.selectedUnitsKeys = [[], []];
       this.dataService.selectedUnitsTypes = [[], []];
       let unitsRecordforIteration = units[num - 1].unitsRecord
+      console.log("unitsRecordIteration:" + unitsRecordforIteration)
+      console.log(unitsRecordforIteration[0], unitsRecordforIteration[1])
       // for (let item in unitsRecordforIteration) {
       //   this.dataService.selectedUnitsKeys.push(item)
       //   this.dataService.selectedUnitsTypes.push(unitsRecordforIteration[item])
       //   console.log("it happened");
       // }
-      for (let _i = 0; _i < 9; _i++) {
-        this.dataService.selectedUnitsKeys[0].push(unitsRecordforIteration[_i])
-        this.dataService.selectedUnitsTypes[0].push(unitsRecordforIteration[unitsRecordforIteration[_i]])
-        console.log("it happenedddd");
+      let first_column = true;
+      for (let item in unitsRecordforIteration) {
+        if (item.charAt(0) === "/") {first_column = false}
+        if (first_column) {
+          this.dataService.selectedUnitsKeys[0].push(item)
+          this.dataService.selectedUnitsTypes[0].push(unitsRecordforIteration[item])
+        }
+        else {
+          this.dataService.selectedUnitsKeys[1].push(item)
+          this.dataService.selectedUnitsTypes[1].push(unitsRecordforIteration[item])
+        }
       }
-      for (let _i = 9; _i < 13; _i++) {
-        this.dataService.selectedUnitsKeys[1].push(unitsRecordforIteration[_i])
-        this.dataService.selectedUnitsTypes[1].push(unitsRecordforIteration[unitsRecordforIteration[_i]])
-        console.log("it happenedddd");
-      }
+      first_column = true
       if (this.dataService.unitsRecord !== units[num - 1].unitsRecord && this.dataService.translateNum !== 0) {
         console.log(this.dataService.selectedUnitsTypes[0]);
-        this.dataService.setSelectedUnits(this.dataService.selectedUnitsTypes[0], this.dataService.selectedUnitsKeys[0], 0);
+        this.dataService.setSelectedUnits(this.dataService.selectedUnitsTypes[0][0], this.dataService.selectedUnitsKeys[0][0], 0);
         console.log("ifed");
       }
       this.dataService.unitsRecord = units[num - 1].unitsRecord;

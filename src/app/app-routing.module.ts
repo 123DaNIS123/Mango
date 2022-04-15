@@ -11,6 +11,10 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'auto',
+    loadChildren: () => import('./auto/auto.module').then( m => m.AutoPageModule)
+  },
 ];
 
 @NgModule({

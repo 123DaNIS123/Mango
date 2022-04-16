@@ -40,7 +40,7 @@ export const units = [
         name: "volume",
         unitsRecord: {
             "m3": 1,
-            "liter/dm3": 10 ** (-3),
+            "liter (dm3)": 10 ** (-3),
             "cm3": 10 ** (-6),
             "mm3": 10 ** (-9),
           }
@@ -93,17 +93,24 @@ export const units = [
             "pound": 2.2046226218488 * (10 ** (-6)),
             "milligram": 10 ** (-6),
             "microgram": 10 ** (-9),
-            "nanogram": 10 ** (-12)
+            "nanogram": 10 ** (-12),
           }
     },
     {
         id: 6,
         name: "density",
         unitsRecord: {
-            "kg/m3": 1,
-            "g/m3": 10 ** (-3),
-            "g/dm3": 10 ** (-6),
-            "mg/dm3": 10 ** (-9),
+            "kg": 1,
+            "centner": 10 ** 2,
+            "g": 10 ** 3,
+            "cantigram": 10 ** 5,
+            "mg": 10 ** 6,
+            "microgram": 10 ** 9,
+            "nanogram": 10 ** 12,
+            "/m3": 10 ** 3,
+            "/L (dm3)": 1,
+            "/mL (cm3)": 10 ** (-3),
+            "/microL (mm3)": 10 ** (-6)
           }
     },
     {

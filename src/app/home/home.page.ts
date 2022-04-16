@@ -23,7 +23,6 @@ export class HomePage implements OnInit{
   operator: string = null;
   is_first_number: boolean = true;
   is_c = false;
-  is_comma = false;
   some_degree = 0;
   should_calculate = false;
   equals_pressed = true;

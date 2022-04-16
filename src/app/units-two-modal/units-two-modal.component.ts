@@ -73,6 +73,7 @@ export class UnitsTwoModalComponent implements OnInit {
   ngOnInit() {
     let units_from = 0
     if (this.dataService.selectedUnitsKeys[0][0] === "mol"){units_from = 2}
+    else if (this.dataService.selectedUnitsKeys[0][0] === "kg"){units_from = 5}
     else {units_from = 3}
     this.selectedFirstUnitType = this.dataService.numbers_array[this.dataService.translateNum].unit_type.slice(0, this.dataService.numbers_array[this.dataService.translateNum].unit_type.indexOf("/"));
     this.selectedFirstUnit = this.units[units_from].unitsRecord[this.selectedFirstUnitType];

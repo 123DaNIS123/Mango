@@ -66,21 +66,21 @@ export class DataService{
   setSelectedUnits(numNumber: number, numType: string, trNum: number) {
     this.numbers_array[trNum].unit_val_past = this.numbers_array[trNum].unit_val_pres;
     this.numbers_array[trNum].unit_val_pres = numNumber;
-    console.log("++++++++calc val while converting", this.numbers_array[trNum].val)
-    console.log("unit_val_past", this.numbers_array[trNum].unit_val_past)
-    console.log("unit_val_pres", this.numbers_array[trNum].unit_val_pres)
-    console.log("unit_type", this.numbers_array[trNum].unit_type)
-    console.log("disp", this.numbers_array[trNum].disp)
+    // console.log("++++++++calc val while converting", this.numbers_array[trNum].val)
+    // console.log("unit_val_past", this.numbers_array[trNum].unit_val_past)
+    // console.log("unit_val_pres", this.numbers_array[trNum].unit_val_pres)
+    // console.log("unit_type", this.numbers_array[trNum].unit_type)
+    // console.log("disp", this.numbers_array[trNum].disp)
     this.numbers_array[trNum].val = (this.numbers_array[trNum].val 
       * this.numbers_array[trNum].unit_val_past) 
       / this.numbers_array[trNum].unit_val_pres
       this.numbers_array[trNum].unit_type = numType;
     this.numbers_array[trNum].disp = this.numbers_array[trNum].val.toString();
-    console.log("++++++++calc val after converting", this.numbers_array[trNum].val)
-    console.log("unit_val_past", this.numbers_array[trNum].unit_val_past)
-    console.log("unit_val_pres", this.numbers_array[trNum].unit_val_pres)
-    console.log("unit_type", this.numbers_array[trNum].unit_type)
-    console.log("disp", this.numbers_array[trNum].disp)
+    // console.log("++++++++calc val after converting", this.numbers_array[trNum].val)
+    // console.log("unit_val_past", this.numbers_array[trNum].unit_val_past)
+    // console.log("unit_val_pres", this.numbers_array[trNum].unit_val_pres)
+    // console.log("unit_type", this.numbers_array[trNum].unit_type)
+    // console.log("disp", this.numbers_array[trNum].disp)
   }
 
   // convert() {

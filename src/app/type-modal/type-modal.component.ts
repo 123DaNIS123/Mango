@@ -18,7 +18,7 @@ export class TypeModalComponent{
   constructor(private dataService: DataService, private ModalCtrl: ModalController) { }
 
   onMeasurementSelect(num: number) {
-    if (num !== 3 && num !== 4) {
+    if (num !== 3 && num !== 4 && num !== 6) {
       this.dataService.selectedUnitsKeys = [];
       this.dataService.selectedUnitsTypes = [];
       let unitsRecordforIteration = units[num - 1].unitsRecord
@@ -30,6 +30,7 @@ export class TypeModalComponent{
       if (this.dataService.unitsRecord !== units[num - 1].unitsRecord && this.dataService.translateNum !== 0) {
         console.log(this.dataService.selectedUnitsTypes[0]);
         this.dataService.setSelectedUnits(this.dataService.selectedUnitsTypes[0], this.dataService.selectedUnitsKeys[0], 0);
+        this.dataService.setSelectedUnits(this.dataService.selectedUnitsTypes[0], this.dataService.selectedUnitsKeys[0], 1);
         console.log("ifed");
       }
       this.dataService.unitsRecord = units[num - 1].unitsRecord;
@@ -62,7 +63,8 @@ export class TypeModalComponent{
       first_column = true
       if (this.dataService.unitsRecord !== units[num - 1].unitsRecord && this.dataService.translateNum !== 0) {
         console.log(this.dataService.selectedUnitsTypes[0]);
-        this.dataService.setSelectedUnits(this.dataService.selectedUnitsTypes[0][0], this.dataService.selectedUnitsKeys[0][0], 0);
+        this.dataService.setSelectedUnits(this.dataService.selectedUnitsTypes[0][0], this.dataService.selectedUnitsKeys[0][0] + "/L (dm3)", 0);
+        this.dataService.setSelectedUnits(this.dataService.selectedUnitsTypes[0][0], this.dataService.selectedUnitsKeys[0][0] + "/L (dm3)", 1);
         console.log("ifed");
       }
       this.dataService.unitsRecord = units[num - 1].unitsRecord;

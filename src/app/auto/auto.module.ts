@@ -8,6 +8,9 @@ import { AutoPageRoutingModule } from './auto-routing.module';
 
 import { AutoPage } from './auto.page';
 
+import { UnitsModalComponent } from '../units-modal/units-modal.component';
+import { UnitsTwoModalComponent } from '../units-two-modal/units-two-modal.component';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -15,6 +18,7 @@ import { AutoPage } from './auto.page';
     IonicModule,
     AutoPageRoutingModule
   ],
-  declarations: [AutoPage]
+  declarations: [AutoPage, UnitsModalComponent, UnitsTwoModalComponent],
+  entryComponents: [UnitsModalComponent, UnitsTwoModalComponent]
 })
 export class AutoPageModule {}

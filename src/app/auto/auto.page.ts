@@ -26,14 +26,14 @@ export class AutoPage implements OnInit {
         this.dataService.selectedUnitsTypes.push(unitsRecordforIteration[item])
         console.log("it happened");
       }
-      if (this.dataService.unitsRecord !== units[num - 1].unitsRecord && this.dataService.translateNum !== 0) {
-        console.log(this.dataService.selectedUnitsTypes[0]);
-        this.dataService.setSelectedUnits(this.dataService.selectedUnitsTypes[0], this.dataService.selectedUnitsKeys[0], 0);
-        this.dataService.setSelectedUnits(this.dataService.selectedUnitsTypes[0], this.dataService.selectedUnitsKeys[0], 1);
-        console.log("ifed");
-      }
+      // if (this.dataService.unitsRecord !== units[num - 1].unitsRecord && this.dataService.translateNum !== 0) {
+      //   console.log(this.dataService.selectedUnitsTypes[0]);
+      //   this.dataService.setSelectedUnits(this.dataService.selectedUnitsTypes[0], this.dataService.selectedUnitsKeys[0], 0);
+      //   this.dataService.setSelectedUnits(this.dataService.selectedUnitsTypes[0], this.dataService.selectedUnitsKeys[0], 1);
+      //   console.log("ifed");
+      // }
       this.dataService.unitsRecord = units[num - 1].unitsRecord;
-      this.ModalCtrl.dismiss();
+      // this.ModalCtrl.dismiss();
       this.presentModal();
     }
     else {
@@ -60,14 +60,14 @@ export class AutoPage implements OnInit {
         }
       }
       first_column = true
-      if (this.dataService.unitsRecord !== units[num - 1].unitsRecord && this.dataService.translateNum !== 0) {
-        console.log(this.dataService.selectedUnitsTypes[0]);
-        this.dataService.setSelectedUnits(this.dataService.selectedUnitsTypes[0][0], this.dataService.selectedUnitsKeys[0][0] + "/L (dm3)", 0);
-        this.dataService.setSelectedUnits(this.dataService.selectedUnitsTypes[0][0], this.dataService.selectedUnitsKeys[0][0] + "/L (dm3)", 1);
-        console.log("ifed");
-      }
+      // if (this.dataService.unitsRecord !== units[num - 1].unitsRecord && this.dataService.translateNum !== 0) {
+      //   console.log(this.dataService.selectedUnitsTypes[0]);
+      //   this.dataService.setSelectedUnits(this.dataService.selectedUnitsTypes[0][0], this.dataService.selectedUnitsKeys[0][0] + "/L (dm3)", 0);
+      //   this.dataService.setSelectedUnits(this.dataService.selectedUnitsTypes[0][0], this.dataService.selectedUnitsKeys[0][0] + "/L (dm3)", 1);
+      //   console.log("ifed");
+      // }
       this.dataService.unitsRecord = units[num - 1].unitsRecord;
-      this.ModalCtrl.dismiss();
+      // this.ModalCtrl.dismiss();
       this.presentTwoModal();
     }
   };

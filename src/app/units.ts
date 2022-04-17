@@ -14,11 +14,13 @@ export interface ex_num {
     val: number,
     firstval: number,
     disp: string,
-    unit_id: number,
     // unit_key: string,
     unit_val_pres: number,
     unit_val_past: number,
-    unit_type: string
+    unit_type: string,
+    param_name: string,
+    status: string,
+    unit_id: number
 }
 
 
@@ -26,7 +28,7 @@ export interface ex_num {
 export const units = [
     {
         id: 1,
-        name: "moles",
+        name: "amount of substance",
         unitsRecord: {
             "mol": 1,
             "decimol": 10 ** (-1),
@@ -39,8 +41,8 @@ export const units = [
         id: 2,
         name: "volume",
         unitsRecord: {
-            "m3": 1,
-            "liter (dm3)": 10 ** (-3),
+            "m3": 10 ** 3,
+            "L (dm3)": 1,
             "cm3": 10 ** (-6),
             "mm3": 10 ** (-9),
           }
@@ -87,26 +89,26 @@ export const units = [
         id: 5,
         name: "mass",
         unitsRecord: {
-            "kilogram": 1,
-            "centner": 10 ** (-2),
-            "gram": 10 ** (-3),
-            "pound": 2.2046226218488 * (10 ** (-6)),
-            "milligram": 10 ** (-6),
-            "microgram": 10 ** (-9),
-            "nanogram": 10 ** (-12),
+            "kilogram": 10 ** 3,
+            "centner": 10,
+            "gram": 1,
+            "pound": 2.2046226218488 * (10 ** (-3)),
+            "milligram": 10 ** (-3),
+            "microgram": 10 ** (-6),
+            "nanogram": 10 ** (-9),
           }
     },
     {
         id: 6,
         name: "density",
         unitsRecord: {
-            "kg": 1,
-            "centner": 10 ** 2,
-            "g": 10 ** 3,
-            "cantigram": 10 ** 5,
-            "mg": 10 ** 6,
-            "microgram": 10 ** 9,
-            "nanogram": 10 ** 12,
+            "kg": 10 ** (-3),
+            "centner": 10 * (-1),
+            "g": 1,
+            "cantigram": 100,
+            "mg": 10 ** 3,
+            "microgram": 10 ** 6,
+            "nanogram": 10 ** 9,
             "/m3": 10 ** 3,
             "/L (dm3)": 1,
             "/mL (cm3)": 10 ** (-3),
@@ -125,6 +127,18 @@ export const units = [
             "nanometer": 10 ** (-9),
             "angstrom": 10 ** (-10),
             "picometer" : 10 ** (-12)
+          }
+    },
+    {
+        id: 8,
+        name: "molar mass",
+        unitsRecord: {
+            "kg": 10 ** (-3),
+            "centner": 10 * (-1),
+            "g": 1,
+            "mg": 10 ** 3,
+            "/mol": 1,
+            "/mmol": 10 ** (-3),
           }
     }
 ]

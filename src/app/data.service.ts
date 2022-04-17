@@ -17,6 +17,8 @@ export class DataService{
   selectedUnits = SelectedUNITS;
   selNum = 1;
 
+  selAutoNum = 1;
+
   translateNum = 1;
 
   units = units;
@@ -28,10 +30,12 @@ export class DataService{
     val: 0,
     firstval: 0,
     disp: "0",
-    unit_id: 1,
     unit_val_pres: 1,
     unit_val_past: 1,
-    unit_type: "mol"
+    unit_type: "mol",
+    param_name: "-",
+    status: "idle",
+    unit_id: 1
   }
 
   number_0: ex_num = {
@@ -39,14 +43,135 @@ export class DataService{
     val: 0,
     firstval: 0,
     disp: "0",
-    unit_id: 1,
     unit_val_pres: 1,
     unit_val_past: 1,
-    unit_type: "mol"
+    unit_type: "mol",
+    param_name: "-",
+    status: "idle",
+    unit_id: 1
   }
 
+  autonum_0: ex_num = {
+    id: 0,
+    val: 0,
+    firstval: 0,
+    disp: "0",
+    unit_val_pres: 1,
+    unit_val_past: 1,
+    unit_type: "mol",
+    param_name: "amount of substance",
+    status: "idle",
+    unit_id: 1
+  }
+
+  autonum_1: ex_num = {
+    id: 1,
+    val: 0,
+    firstval: 0,
+    disp: "0",
+    unit_val_pres: 1,
+    unit_val_past: 1,
+    unit_type: "L (dm3)",
+    param_name: "volume",
+    status: "idle",
+    unit_id: 2
+  }
+
+  autonum_2: ex_num = {
+    id: 2,
+    val: 0,
+    firstval: 0,
+    disp: "0",
+    unit_val_pres: 1,
+    unit_val_past: 1,
+    unit_type: "mol/L (dm3)",
+    param_name: "molar concentration",
+    status: "idle",
+    unit_id: 3
+  }
+
+  autonum_3: ex_num = {
+    id: 3,
+    val: 0,
+    firstval: 0,
+    disp: "0",
+    unit_val_pres: 1,
+    unit_val_past: 1,
+    unit_type: "kg/L (dm3)",
+    param_name: "density",
+    status: "idle",
+    unit_id: 6
+  }
+
+  autonum_4: ex_num = {
+    id: 4,
+    val: 0,
+    firstval: 0,
+    disp: "0",
+    unit_val_pres: 1,
+    unit_val_past: 1,
+    unit_type: "gram",
+    param_name: "substance mass",
+    status: "idle",
+    unit_id: 5
+  }
+
+  autonum_5: ex_num = {
+    id: 5,
+    val: 0,
+    firstval: 0,
+    disp: "0",
+    unit_val_pres: 1,
+    unit_val_past: 1,
+    unit_type: "gram/mol",
+    param_name: "molar mass",
+    status: "idle",
+    unit_id: 8
+  }
+
+  autonum_6: ex_num = {
+    id: 6,
+    val: 0,
+    firstval: 0,
+    disp: "0",
+    unit_val_pres: 1,
+    unit_val_past: 1,
+    unit_type: "gram",
+    param_name: "solution mass",
+    status: "idle",
+    unit_id: 5
+  }
+
+  autonum_7: ex_num = {
+    id: 7,
+    val: 0,
+    firstval: 0,
+    disp: "0",
+    unit_val_pres: 1,
+    unit_val_past: 1,
+    unit_type: "",
+    param_name: "equivalence factor",
+    status: "idle",
+    unit_id: 0
+  }
+
+  autonum_8: ex_num = {
+    id: 8,
+    val: 0,
+    firstval: 0,
+    disp: "0",
+    unit_val_pres: 1,
+    unit_val_past: 1,
+    unit_type: "eq/L (dm3)",
+    param_name: "equivalent concentration",
+    status: "idle",
+    unit_id: 4
+  }
   
   numbers_array = [this.number_0, this.number_1];
+
+  autonum_array = [this.autonum_0, this.autonum_1, this.autonum_2, this.autonum_3, this.autonum_4,
+    this.autonum_5, this.autonum_6, this.autonum_7, this.autonum_8];
 
 
   firstval: number = 0;

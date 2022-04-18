@@ -173,6 +173,10 @@ export class DataService{
   autonum_array = [this.autonum_0, this.autonum_1, this.autonum_2, this.autonum_3, this.autonum_4,
     this.autonum_5, this.autonum_6, this.autonum_7, this.autonum_8];
 
+  selectednum_array = [this.selNum, this.selAutoNum]
+  selectednum_index = 0
+
+  selectedarray_array = [this.numbers_array, this.autonum_array]
 
   firstval: number = 0;
   selectedUnitsKeys: Array<any> = [];
@@ -189,18 +193,18 @@ export class DataService{
   // }
 
   setSelectedUnits(numNumber: number, numType: string, trNum: number) {
-    this.numbers_array[trNum].unit_val_past = this.numbers_array[trNum].unit_val_pres;
-    this.numbers_array[trNum].unit_val_pres = numNumber;
+    this.selectedarray_array[this.selectednum_index][trNum].unit_val_past = this.selectedarray_array[this.selectednum_index][trNum].unit_val_pres;
+    this.selectedarray_array[this.selectednum_index][trNum].unit_val_pres = numNumber;
     // console.log("++++++++calc val while converting", this.numbers_array[trNum].val)
     // console.log("unit_val_past", this.numbers_array[trNum].unit_val_past)
     // console.log("unit_val_pres", this.numbers_array[trNum].unit_val_pres)
     // console.log("unit_type", this.numbers_array[trNum].unit_type)
     // console.log("disp", this.numbers_array[trNum].disp)
-    this.numbers_array[trNum].val = (this.numbers_array[trNum].val 
-      * this.numbers_array[trNum].unit_val_past) 
-      / this.numbers_array[trNum].unit_val_pres
-      this.numbers_array[trNum].unit_type = numType;
-    this.numbers_array[trNum].disp = this.numbers_array[trNum].val.toString();
+    this.selectedarray_array[this.selectednum_index][trNum].val = (this.selectedarray_array[this.selectednum_index][trNum].val 
+      * this.selectedarray_array[this.selectednum_index][trNum].unit_val_past) 
+      / this.selectedarray_array[this.selectednum_index][trNum].unit_val_pres
+      this.selectedarray_array[this.selectednum_index][trNum].unit_type = numType;
+      this.selectedarray_array[this.selectednum_index][trNum].disp = this.selectedarray_array[this.selectednum_index][trNum].val.toString();
     // console.log("++++++++calc val after converting", this.numbers_array[trNum].val)
     // console.log("unit_val_past", this.numbers_array[trNum].unit_val_past)
     // console.log("unit_val_pres", this.numbers_array[trNum].unit_val_pres)
@@ -215,8 +219,8 @@ export class DataService{
   // }
 
   on_num_change(num: number) {
-    this.numbers_array[0].disp = ((+this.numbers_array[num].disp * this.numbers_array[num].unit_val_pres) / this.numbers_array[0].unit_val_pres).toString();
-    this.numbers_array[0].val = +this.numbers_array[0].disp;
+    this.selectedarray_array[this.selectednum_index][0].disp = ((+this.selectedarray_array[this.selectednum_index][num].disp * this.selectedarray_array[this.selectednum_index][num].unit_val_pres) / this.selectedarray_array[this.selectednum_index][0].unit_val_pres).toString();
+    this.selectedarray_array[this.selectednum_index][0].val = +this.selectedarray_array[this.selectednum_index][0].disp;
   }
 
   onStartFunc(): void {

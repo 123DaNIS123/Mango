@@ -9,6 +9,7 @@ import { AutoPageRoutingModule } from './auto-routing.module';
 import { AutoPage } from './auto.page';
 
 import { UnitsModalComponent } from '../units-modal/units-modal.component';
+import { TypeModalComponent } from '../type-modal/type-modal.component';
 import { UnitsTwoModalComponent } from '../units-two-modal/units-two-modal.component';
 
 @NgModule({
@@ -18,7 +19,7 @@ import { UnitsTwoModalComponent } from '../units-two-modal/units-two-modal.compo
     IonicModule,
     AutoPageRoutingModule
   ],
-  declarations: [AutoPage, UnitsModalComponent, UnitsTwoModalComponent],
-  entryComponents: [UnitsModalComponent, UnitsTwoModalComponent]
+  declarations: [AutoPage, UnitsModalComponent, TypeModalComponent ,UnitsTwoModalComponent],
+  entryComponents: [UnitsModalComponent, TypeModalComponent ,UnitsTwoModalComponent]
 })
 export class AutoPageModule {}

@@ -27,7 +27,7 @@ export class TypeModalComponent{
         this.dataService.selectedUnitsTypes.push(unitsRecordforIteration[item])
         console.log("it happened");
       }
-      if (this.dataService.unitsRecord !== units[num - 1].unitsRecord && this.dataService.translateNum !== 0) {
+      if (this.dataService.selectednum_index === 0 && this.dataService.unitsRecord !== units[num - 1].unitsRecord && this.dataService.selectednum_array[this.dataService.selectednum_index] !== 0) {
         console.log(this.dataService.selectedUnitsTypes[0]);
         this.dataService.setSelectedUnits(this.dataService.selectedUnitsTypes[0], this.dataService.selectedUnitsKeys[0], 0);
         this.dataService.setSelectedUnits(this.dataService.selectedUnitsTypes[0], this.dataService.selectedUnitsKeys[0], 1);
@@ -61,7 +61,7 @@ export class TypeModalComponent{
         }
       }
       first_column = true
-      if (this.dataService.unitsRecord !== units[num - 1].unitsRecord && this.dataService.translateNum !== 0) {
+      if (this.dataService.selectednum_index === 0 && this.dataService.unitsRecord !== units[num - 1].unitsRecord && this.dataService.selectednum_array[this.dataService.selectednum_index] !== 0) {
         console.log(this.dataService.selectedUnitsTypes[0]);
         this.dataService.setSelectedUnits(this.dataService.selectedUnitsTypes[0][0], this.dataService.selectedUnitsKeys[0][0] + "/L (dm3)", 0);
         this.dataService.setSelectedUnits(this.dataService.selectedUnitsTypes[0][0], this.dataService.selectedUnitsKeys[0][0] + "/L (dm3)", 1);

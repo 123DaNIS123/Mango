@@ -239,4 +239,127 @@ export class DataService{
       this.selectedUnitsTypes.push(this.unitsRecord[item])
     }
   }
+
+  autoUpdate() {
+    for (let i = 0; i < 8; i++) {
+      console.log("i: " + i)
+      let n: number = 0
+      let last_value: number = 0
+      switch(i) {
+        case (0): {n = 2
+          last_value = this.autonum_array[n].val
+          this.Cm_n_V()
+          console.log("case " + i + " n = " + n)}
+        case (1): {n = 8
+          last_value = this.autonum_array[n].val
+          this.Cn_Cm_ef()
+          console.log("case " + i + " n = " + n)}
+        case (2): {n = 1
+          last_value = this.autonum_array[n].val
+          this.V_n_Cm()
+          console.log("case " + i + " n = " + n)}
+        case (3): {n = 4
+          last_value = this.autonum_array[n].val
+          this.m_n_M()
+          console.log("case " + i + " n = " + n)}
+        case (4): {n = 5
+          last_value = this.autonum_array[n].val
+          this.M_m_n()
+          console.log("case " + i + " n = " + n)}
+        case 5: {n = 3
+          last_value = this.autonum_array[n].val
+          this.d_ms_v()
+          console.log("case " + i + " n = " + n)}
+        case 6: {n = 6
+          last_value = this.autonum_array[n].val
+          this.ms_d_v()
+          console.log("case " + i + " n = " + n)}
+        case 7: {n = 0
+          last_value = this.autonum_array[n].val
+          this.n_m_M()
+          console.log("case " + i + " n = " + n)}
+      }
+      if (this.autonum_array[n].val === 0 || this.autonum_array[n].val === null || this.autonum_array[n].val === NaN) {
+        this.autonum_array[n].val = last_value
+        this.autonum_array[n].status = "notcalc"
+        console.log("notcalc")
+      }
+      this.autonum_array[n].disp = this.autonum_array[n].val.toString()
+      console.log("end of " + i + " loop")
+      console.log(this.autonum_array[n].val, n)
+    }
+      // try {
+      //   switch(i) {
+      //     case 0: {n = 2
+      //       last_value = this.autonum_array[n].val
+      //       this.Cm_n_V()}
+      //     case 1: {n = 8
+      //       last_value = this.autonum_array[n].val
+      //       this.Cn_Cm_ef()}
+      //     case 2: {n = 1
+      //       last_value = this.autonum_array[n].val
+      //       this.V_n_Cm()}
+      //     case 3: {n = 4
+      //       last_value = this.autonum_array[n].val
+      //       this.m_n_M()}
+      //     case 4: {n = 5
+      //       last_value = this.autonum_array[n].val
+      //       this.M_m_n()}
+      //     case 5: {n = 3
+      //       last_value = this.autonum_array[n].val
+      //       this.d_ms_v()}
+      //     case 6: {n = 6
+      //       last_value = this.autonum_array[n].val
+      //       this.ms_d_v()}
+      //     case 7: {n = 0
+      //       last_value = this.autonum_array[n].val
+      //       this.n_m_M()}
+      //   }
+      //   console.log("in try2")
+      // }
+    //   catch {
+    //     this.autonum_array[n].val = last_value
+    //     this.autonum_array[n].status = "notcalc"
+    //     console.log("in catch")
+    //   }
+    //   finally {
+    //     this.autonum_array[n].disp = this.autonum_array[n].val.toString()
+    //   }
+    //   console.log("i: " + i)
+    // }
+  }
+
+  Cm_n_V() {
+    this.autonum_array[2].val = this.autonum_array[0].val / this.autonum_array[1].val
+    this.autonum_array[2].status = "calc"
+    console.log("CONSOLE LOGGED")}
+  Cn_Cm_ef() {
+    this.autonum_array[8].val = this.autonum_array[2].val / this.autonum_array[7].val
+    this.autonum_array[8].status = "calc"
+  }
+  V_n_Cm() {
+    this.autonum_array[1].val = this.autonum_array[0].val / this.autonum_array[2].val
+    this.autonum_array[1].status = "calc"
+  }
+  m_n_M() {
+    this.autonum_array[4].val = this.autonum_array[0].val * this.autonum_array[5].val
+    this.autonum_array[4].status = "calc"
+  }
+  M_m_n() {
+    this.autonum_array[5].val = this.autonum_array[4].val / this.autonum_array[0].val
+    this.autonum_array[5].status = "calc"
+  }
+  d_ms_v() {
+    this.autonum_array[3].val = this.autonum_array[6].val / this.autonum_array[1].val
+    this.autonum_array[3].status = "calc"
+  }
+  ms_d_v() {
+    this.autonum_array[6].val = this.autonum_array[3].val * this.autonum_array[1].val
+    this.autonum_array[6].status = "calc"
+  }
+  n_m_M() {
+    this.autonum_array[0].val = this.autonum_array[4].val / this.autonum_array[5].val
+    this.autonum_array[0].status = "calc"
+  }
+
 }

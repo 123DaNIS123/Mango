@@ -152,6 +152,7 @@ export class CalculatorComponent implements OnInit {
     this.dataService.selectedarray_array[1][this.dataService.selectednum_array[1]].firstval = 0;
     this.should_calculate = false;
     // this.dataService.on_num_change(this.dataService.selectednum_array[1]);
+    this.dataService.autoUpdate()
   }
 
   close() {

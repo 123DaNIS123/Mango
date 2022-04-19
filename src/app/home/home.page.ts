@@ -25,7 +25,6 @@ export class HomePage implements OnInit{
   operator: string = null;
   is_first_number: boolean = true;
   is_c = false;
-  some_degree = 0;
   should_calculate = false;
   equals_pressed = true;
 
@@ -78,7 +77,6 @@ export class HomePage implements OnInit{
   add_operator(str: string) {
     if (this.operator && this.should_calculate) {
       this.calculate();
-      console.log("calculated!@!" + this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp);
     }
     this.is_first_number = true;
     this.is_c = false;
@@ -91,13 +89,10 @@ export class HomePage implements OnInit{
   add_comma() {
     if (this.is_first_number) {
       this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp = "0."
-      this.some_degree = 1;
-      console.log("add_comma")
       this.is_first_number = false;
     }
     else if (this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp.indexOf(".") === -1) {
       this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp += "."
-      this.some_degree = 1;
     }
   }
 
@@ -121,7 +116,6 @@ export class HomePage implements OnInit{
     this.is_first_number = true;
     this.is_c = false;
     // this.is_comma = false;
-    this.some_degree = 0;
     this.operator = null;
   }
 
@@ -129,7 +123,6 @@ export class HomePage implements OnInit{
     this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].val /= 100;
     this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp = this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].val.toString();
     this.dataService.on_num_change(this.dataService.selectednum_array[0]);
-    this.checkIfFloat();
   }
 
   plus_minus_switch() {
@@ -141,9 +134,7 @@ export class HomePage implements OnInit{
   calculate(source: number = 1) {
     switch (this.operator) {
       case "+":
-        console.log("+ case before", this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].val, this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].firstval);
         this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].val += this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].firstval;
-        console.log("+ case after", this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].val, this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].firstval);
         break
       case "-":
         this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].val -= this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].firstval;
@@ -170,27 +161,22 @@ export class HomePage implements OnInit{
     this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp = this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].val.toString();
     this.is_first_number = true;
     this.is_c = false;
-    // this.is_comma = false;
-    this.some_degree = 0;
     this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].firstval = 0;
-    this.checkIfFloat();
     this.should_calculate = false;
     this.dataService.on_num_change(this.dataService.selectednum_array[0]);
   }
 
-  checkIfFloat() {
-    // if (!Number.isInteger(this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp)) {
-    if (this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp.indexOf(".") !== -1) {
-      this.some_degree = this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp.length - this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp.indexOf(".")
-      console.log("CheckIfFloat: " + this.some_degree)
-    }
-  }
+  // checkIfFloat() {
+  //   // if (!Number.isInteger(this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp)) {
+  //   if (this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp.indexOf(".") !== -1) {
+  //     this.some_degree = this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp.length - this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp.indexOf(".")
+  //     console.log("CheckIfFloat: " + this.some_degree)
+  //   }
+  // }
 
   onModalOpen(num: number) {
-    //+ this.dataService.selectednum_array[0] = num; в autopage
     this.dataService.selectedtrnum_array[0] = num;
     if (num !== 0) { 
-      // this.dataService.selectednum_array[0] = num;
       this.presentTypeModal();}
     else if (this.dataService.selectedUnitsKeys.length !== 2)
     {this.presentUnitsModal();}

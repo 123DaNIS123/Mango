@@ -1,0 +1,88 @@
+<ion-content [fullscreen]="true">
+  <button (click)="close()">Back</button>
+  <div class="calc-main">
+    <div class="calc-display">
+      <ion-row>
+        <ion-col>
+          <ion-label>{{ dataService.autonum_array[dataService.selectednum_array[1]].disp }} {{ dataService.autonum_array[dataService.selectednum_array[1]].unit_type }}</ion-label>
+        </ion-col>
+      </ion-row>
+    </div>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-button shape="round" color="light" *ngIf="!is_c" (click)="clear('AC')">AC</ion-button>
+          <ion-button shape="round" color="light" *ngIf="is_c" (click)="clear('C')">C</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button shape="round" color="light" (click)="plus_minus_switch('+/-')">+/-</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button shape="round" color="light" (click)="percent()">%</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button shape="round" color="warning" (click)="add_operator('^')">^</ion-button>
+        </ion-col>
+        <!-- <ion-col>
+          <ion-button shape="round" color="warning" (click)="add_operator('log')">LOGx(Y)</ion-button>
+        </ion-col> -->
+        <ion-col>
+          <ion-button shape="round" color="warning" (click)="add_operator('/')">/</ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button shape="round" color="dark" (click)="add_number(7)">7</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button shape="round" color="dark" (click)="add_number(8)">8</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button shape="round" color="dark" (click)="add_number(9)">9</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button shape="round" color="warning" (click)="add_operator('*')">*</ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button shape="round" color="dark" (click)="add_number(4)">4</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button shape="round" color="dark" (click)="add_number(5)">5</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button shape="round" color="dark" (click)="add_number(6)">6</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button shape="round" color="warning" (click)="add_operator('-')">-</ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button shape="round" color="dark" (click)="add_number(1)">1</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button shape="round" color="dark" (click)="add_number(2)">2</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button shape="round" color="dark" (click)="add_number(3)">3</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button shape="round" color="warning" (click)="add_operator('+')">+</ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button shape="round" color="dark" (click)="add_comma(',')">,</ion-button>
+        </ion-col>
+        <ion-col size="3">
+          <ion-button shape="round" color="dark" (click)="add_number(0)" class="double-width">0</ion-button>
+        </ion-col>
+        <ion-col size="6">
+          <ion-button shape="round" color="warning" (click)="calculate(0)">=</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

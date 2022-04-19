@@ -202,7 +202,7 @@ export class DataService{
     // console.log("unit_type", this.numbers_array[trNum].unit_type)
     // console.log("disp", this.numbers_array[trNum].disp)
     this.selectedarray_array[this.selectednum_index][trNum].unit_type = numType;
-    if (this.selectednum_index !== 0 || (this.selectednum_index === 0 && trNum === 0)) {
+    if (this.selectednum_index === 0 && trNum === 0) {
       this.selectedarray_array[this.selectednum_index][trNum].val = (this.selectedarray_array[this.selectednum_index][trNum].val 
         * this.selectedarray_array[this.selectednum_index][trNum].unit_val_past) 
         / this.selectedarray_array[this.selectednum_index][trNum].unit_val_pres

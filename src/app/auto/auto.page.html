@@ -3,9 +3,9 @@
   <div class="converter">
     <div class="converter-display">
       <ion-list *ngFor="let param of dataService.autonum_array">
-        <ion-item (click)="number_selecting(param.id)">
-          <ion-button (click)="onMeasurementSelect(param.unit_id)">Select Unit</ion-button>
-          <ion-label [ngClass]="param.status">
+        <ion-item (click)="number_select(param.id)">
+          <ion-button *ngIf="param.id !==7" (click)="onMeasurementSelect(param.unit_id)">Select Unit</ion-button>
+          <ion-label (click)="number_selecting(param.id)" [ngClass]="param.status">
             {{ param.param_name }}: {{ param.disp }} {{ param.unit_type }}
           </ion-label>
         </ion-item>

@@ -7,6 +7,8 @@ import { UnitsModalComponent } from '../units-modal/units-modal.component';
 import { TypeModalComponent } from '../type-modal/type-modal.component';
 import { UnitsTwoModalComponent } from '../units-two-modal/units-two-modal.component';
 
+import { CalculatorComponent } from '../calculator/calculator.component';
+
 import { Router } from "@angular/router"
 
 @Component({
@@ -29,12 +31,6 @@ export class AutoPage implements OnInit {
         this.dataService.selectedUnitsTypes.push(unitsRecordforIteration[item])
         console.log("it happened");
       }
-      if (this.dataService.selectednum_index === 0 && this.dataService.unitsRecord !== units[num - 1].unitsRecord && this.dataService.selectedtrnum_array[this.dataService.selectednum_index] !== 0) {
-        console.log(this.dataService.selectedUnitsTypes[0]);
-        this.dataService.setSelectedUnits(this.dataService.selectedUnitsTypes[0], this.dataService.selectedUnitsKeys[0], 0);
-        this.dataService.setSelectedUnits(this.dataService.selectedUnitsTypes[0], this.dataService.selectedUnitsKeys[0], 1);
-        console.log("ifed");
-      }
       this.dataService.unitsRecord = units[num - 1].unitsRecord;
       this.presentUnitsModal();
     }
@@ -42,8 +38,6 @@ export class AutoPage implements OnInit {
       this.dataService.selectedUnitsKeys = [[], []];
       this.dataService.selectedUnitsTypes = [[], []];
       let unitsRecordforIteration = units[num - 1].unitsRecord
-      console.log("unitsRecordIteration:" + unitsRecordforIteration)
-      console.log(unitsRecordforIteration[0], unitsRecordforIteration[1])
       let first_column = true;
       for (let item in unitsRecordforIteration) {
         if (item.charAt(0) === "/") {first_column = false}
@@ -57,12 +51,6 @@ export class AutoPage implements OnInit {
         }
       }
       first_column = true
-      if (this.dataService.selectednum_index === 0 && this.dataService.unitsRecord !== units[num - 1].unitsRecord && this.dataService.selectedtrnum_array[this.dataService.selectednum_index] !== 0) {
-        console.log(this.dataService.selectedUnitsTypes[0]);
-        this.dataService.setSelectedUnits(this.dataService.selectedUnitsTypes[0][0], this.dataService.selectedUnitsKeys[0][0] + "/L (dm3)", 0);
-        this.dataService.setSelectedUnits(this.dataService.selectedUnitsTypes[0][0], this.dataService.selectedUnitsKeys[0][0] + "/L (dm3)", 1);
-        console.log("ifed");
-      }
       this.dataService.unitsRecord = units[num - 1].unitsRecord;
       this.presentUnitsTwoModal();
     }
@@ -89,10 +77,23 @@ export class AutoPage implements OnInit {
     return await modal.present();
   }
 
+  async presentCalculator() {
+    const modal = await this.ModalCtrl.create({
+      component: CalculatorComponent
+    });
+    return await modal.present();
+  }
+
+  number_select(num: number) {
+    this.dataService.selectedtrnum_array[1] = num
+    this.dataService.selectednum_array[1] = num
+  }
+
   number_selecting(num: number) {
     this.dataService.selectedtrnum_array[1] = num
     this.dataService.selectednum_array[1] = num
     console.log("number_selecting_AutoPage")
+    this.presentCalculator()
   }
 
   goToPage() {

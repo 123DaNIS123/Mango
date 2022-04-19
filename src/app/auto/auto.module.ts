@@ -12,6 +12,8 @@ import { UnitsModalComponent } from '../units-modal/units-modal.component';
 import { TypeModalComponent } from '../type-modal/type-modal.component';
 import { UnitsTwoModalComponent } from '../units-two-modal/units-two-modal.component';
 
+import { CalculatorComponent } from '../calculator/calculator.component';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -19,7 +21,7 @@ import { UnitsTwoModalComponent } from '../units-two-modal/units-two-modal.compo
     IonicModule,
     AutoPageRoutingModule
   ],
-  declarations: [AutoPage, UnitsModalComponent, TypeModalComponent ,UnitsTwoModalComponent],
-  entryComponents: [UnitsModalComponent, TypeModalComponent ,UnitsTwoModalComponent]
+  declarations: [AutoPage, UnitsModalComponent, TypeModalComponent ,UnitsTwoModalComponent, CalculatorComponent],
+  entryComponents: [UnitsModalComponent, TypeModalComponent ,UnitsTwoModalComponent, CalculatorComponent]
 })
 export class AutoPageModule {}

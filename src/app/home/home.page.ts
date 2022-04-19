@@ -6,6 +6,8 @@ import { UnitsModalComponent } from '../units-modal/units-modal.component';
 import { TypeModalComponent } from '../type-modal/type-modal.component';
 import { UnitsTwoModalComponent } from '../units-two-modal/units-two-modal.component';
 
+import { Router } from "@angular/router"
+
 // import { stringify } from 'querystring';
 
 import { units} from '../units';
@@ -27,7 +29,7 @@ export class HomePage implements OnInit{
   should_calculate = false;
   equals_pressed = true;
 
-  constructor(private ModalCtrl: ModalController, private dataService: DataService) { }
+  constructor(private ModalCtrl: ModalController, private dataService: DataService, private router: Router) { }
 
   add_number(num: number) {
     let disp_read = this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp
@@ -70,7 +72,7 @@ export class HomePage implements OnInit{
     if (!this.equals_pressed) {this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].firstval = +this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp}
     else {this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].val = +this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp}
     this.should_calculate = true;
-    this.dataService.on_num_change(this.dataService.selectednum_array[0])
+    this.dataService.on_num_change(1)
   }
 
   add_operator(str: string) {
@@ -91,6 +93,7 @@ export class HomePage implements OnInit{
       this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp = "0."
       this.some_degree = 1;
       console.log("add_comma")
+      this.is_first_number = false;
     }
     else if (this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp.indexOf(".") === -1) {
       this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp += "."
@@ -184,7 +187,8 @@ export class HomePage implements OnInit{
   }
 
   onModalOpen(num: number) {
-    this.dataService.selectednum_array[0] = num;
+    //+ this.dataService.selectednum_array[0] = num; в autopage
+    this.dataService.selectedtrnum_array[0] = num;
     if (num !== 0) { 
       // this.dataService.selectednum_array[0] = num;
       this.presentTypeModal();}
@@ -212,6 +216,11 @@ export class HomePage implements OnInit{
       component: UnitsTwoModalComponent
     });
     return await modal.present();
+  }
+
+  goToPage() {
+    this.dataService.selectednum_index = 1
+    this.router.navigateByUrl("/auto");
   }
 
   ngOnInit(): void {

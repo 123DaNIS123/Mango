@@ -18,7 +18,7 @@ export class TypeModalComponent{
   constructor(private dataService: DataService, private ModalCtrl: ModalController) { }
 
   onMeasurementSelect(num: number) {
-    if (num !== 3 && num !== 4 && num !== 6) {
+    if (num !== 3 && num !== 4 && num !== 6 && num !== 8) {
       this.dataService.selectedUnitsKeys = [];
       this.dataService.selectedUnitsTypes = [];
       let unitsRecordforIteration = units[num - 1].unitsRecord
@@ -27,13 +27,16 @@ export class TypeModalComponent{
         this.dataService.selectedUnitsTypes.push(unitsRecordforIteration[item])
         console.log("it happened");
       }
-      if (this.dataService.selectednum_index === 0 && this.dataService.unitsRecord !== units[num - 1].unitsRecord && this.dataService.selectednum_array[this.dataService.selectednum_index] !== 0) {
+      if (this.dataService.selectednum_index === 0 && this.dataService.unitsRecord !== units[num - 1].unitsRecord && this.dataService.selectedtrnum_array[this.dataService.selectednum_index] !== 0) {
         console.log(this.dataService.selectedUnitsTypes[0]);
         this.dataService.setSelectedUnits(this.dataService.selectedUnitsTypes[0], this.dataService.selectedUnitsKeys[0], 0);
         this.dataService.setSelectedUnits(this.dataService.selectedUnitsTypes[0], this.dataService.selectedUnitsKeys[0], 1);
         console.log("ifed");
       }
       this.dataService.unitsRecord = units[num - 1].unitsRecord;
+      // if (this.dataService.selectednum_index === 0) {
+      //   this.ModalCtrl.dismiss();
+      // }
       this.ModalCtrl.dismiss();
       this.presentModal();
     }
@@ -61,13 +64,16 @@ export class TypeModalComponent{
         }
       }
       first_column = true
-      if (this.dataService.selectednum_index === 0 && this.dataService.unitsRecord !== units[num - 1].unitsRecord && this.dataService.selectednum_array[this.dataService.selectednum_index] !== 0) {
+      if (this.dataService.selectednum_index === 0 && this.dataService.unitsRecord !== units[num - 1].unitsRecord && this.dataService.selectedtrnum_array[this.dataService.selectednum_index] !== 0) {
         console.log(this.dataService.selectedUnitsTypes[0]);
         this.dataService.setSelectedUnits(this.dataService.selectedUnitsTypes[0][0], this.dataService.selectedUnitsKeys[0][0] + "/L (dm3)", 0);
         this.dataService.setSelectedUnits(this.dataService.selectedUnitsTypes[0][0], this.dataService.selectedUnitsKeys[0][0] + "/L (dm3)", 1);
         console.log("ifed");
       }
       this.dataService.unitsRecord = units[num - 1].unitsRecord;
+      // if (this.dataService.selectednum_index === 0) {
+      //   this.ModalCtrl.dismiss();
+      // }
       this.ModalCtrl.dismiss();
       this.presentTwoModal();
     }
@@ -86,5 +92,11 @@ export class TypeModalComponent{
     });
     return await modal.present();
   }
+
+  // ngOnInit() {
+  //   // if (this.dataService.selectednum_index === 1) {
+  //   //   this.onMeasurementSelect(this.dataService.autonum_array[this.dataService.selectedtrnum_array[1]].unit_id)
+  //   // }
+  // }
 
 }

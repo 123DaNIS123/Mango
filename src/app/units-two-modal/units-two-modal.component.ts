@@ -38,8 +38,8 @@ export class UnitsTwoModalComponent implements OnInit {
     this.selectedFirstUnitType = str;
     if (this.selectedSecondUnit) {
       this.unitUpdate()
-      this.dataService.setSelectedUnits(this.selectedUnit, this.selectedUnitType, this.dataService.selectednum_array[this.dataService.selectednum_index]);
-      console.log(this.dataService.selectednum_array[this.dataService.selectednum_index] +"\n"+ this.dataService.translateNum)
+      this.dataService.setSelectedUnits(this.selectedUnit, this.selectedUnitType, this.dataService.selectedtrnum_array[this.dataService.selectednum_index]);
+      console.log(this.dataService.selectedtrnum_array[this.dataService.selectednum_index] +"\n"+ this.dataService.translateNum)
     }
     if (this.selected_count == 2){
       this.selected_count = 0
@@ -54,9 +54,9 @@ export class UnitsTwoModalComponent implements OnInit {
     this.selectedSecondUnitType = str;
     if (this.selectedFirstUnit) {
       this.unitUpdate();
-      this.dataService.setSelectedUnits(this.selectedUnit, this.selectedUnitType, this.dataService.selectednum_array[this.dataService.selectednum_index]);
+      this.dataService.setSelectedUnits(this.selectedUnit, this.selectedUnitType, this.dataService.selectedtrnum_array[this.dataService.selectednum_index]);
       console.log("Yes, If, 2")
-      console.log(this.dataService.selectednum_array[this.dataService.selectednum_index] +"\n"+ this.dataService.translateNum)
+      console.log(this.dataService.selectedtrnum_array[this.dataService.selectednum_index] +"\n"+ this.dataService.translateNum)
       
     }
     if (this.selected_count == 1){
@@ -75,11 +75,12 @@ export class UnitsTwoModalComponent implements OnInit {
   ngOnInit() {
     let units_from = 0
     if (this.dataService.selectedUnitsKeys[0][0] === "mol"){units_from = 2}
-    else if (this.dataService.selectedUnitsKeys[0][0] === "kg"){units_from = 5}
-    else {units_from = 3}
-    this.selectedFirstUnitType = this.dataService.selectedarray_array[this.dataService.selectednum_index][this.dataService.selectednum_array[this.dataService.selectednum_index]].unit_type.slice(0, this.dataService.selectedarray_array[this.dataService.selectednum_index][this.dataService.selectednum_array[this.dataService.selectednum_index]].unit_type.indexOf("/"));
+    else if (this.dataService.selectedUnitsKeys[0].length === 11){units_from = 5}
+    else if (this.dataService.selectedUnitsKeys[0].length === 13) {units_from = 3}
+    else {units_from = 7}
+    this.selectedFirstUnitType = this.dataService.selectedarray_array[this.dataService.selectednum_index][this.dataService.selectedtrnum_array[this.dataService.selectednum_index]].unit_type.slice(0, this.dataService.selectedarray_array[this.dataService.selectednum_index][this.dataService.selectedtrnum_array[this.dataService.selectednum_index]].unit_type.indexOf("/"));
     this.selectedFirstUnit = this.units[units_from].unitsRecord[this.selectedFirstUnitType];
-    this.selectedSecondUnitType = this.dataService.selectedarray_array[this.dataService.selectednum_index][this.dataService.selectednum_array[this.dataService.selectednum_index]].unit_type.slice(this.dataService.selectedarray_array[this.dataService.selectednum_index][this.dataService.selectednum_array[this.dataService.selectednum_index]].unit_type.indexOf("/"), this.dataService.selectedarray_array[this.dataService.selectednum_index][this.dataService.selectednum_array[this.dataService.selectednum_index]].unit_type.length);
+    this.selectedSecondUnitType = this.dataService.selectedarray_array[this.dataService.selectednum_index][this.dataService.selectedtrnum_array[this.dataService.selectednum_index]].unit_type.slice(this.dataService.selectedarray_array[this.dataService.selectednum_index][this.dataService.selectedtrnum_array[this.dataService.selectednum_index]].unit_type.indexOf("/"), this.dataService.selectedarray_array[this.dataService.selectednum_index][this.dataService.selectedtrnum_array[this.dataService.selectednum_index]].unit_type.length);
     this.selectedSecondUnit = this.units[units_from].unitsRecord[this.selectedSecondUnitType];
     this.selected_count = 0
   }

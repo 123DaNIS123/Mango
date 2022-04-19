@@ -174,6 +174,7 @@ export class DataService{
     this.autonum_5, this.autonum_6, this.autonum_7, this.autonum_8];
 
   selectednum_array = [this.selNum, this.selAutoNum]
+  selectedtrnum_array = [0, this.selAutoNum]
   selectednum_index = 0
 
   selectedarray_array = [this.numbers_array, this.autonum_array]
@@ -200,11 +201,19 @@ export class DataService{
     // console.log("unit_val_pres", this.numbers_array[trNum].unit_val_pres)
     // console.log("unit_type", this.numbers_array[trNum].unit_type)
     // console.log("disp", this.numbers_array[trNum].disp)
-    this.selectedarray_array[this.selectednum_index][trNum].val = (this.selectedarray_array[this.selectednum_index][trNum].val 
-      * this.selectedarray_array[this.selectednum_index][trNum].unit_val_past) 
-      / this.selectedarray_array[this.selectednum_index][trNum].unit_val_pres
-      this.selectedarray_array[this.selectednum_index][trNum].unit_type = numType;
+    this.selectedarray_array[this.selectednum_index][trNum].unit_type = numType;
+    if (this.selectednum_index !== 0 || (this.selectednum_index === 0 && trNum === 0)) {
+      this.selectedarray_array[this.selectednum_index][trNum].val = (this.selectedarray_array[this.selectednum_index][trNum].val 
+        * this.selectedarray_array[this.selectednum_index][trNum].unit_val_past) 
+        / this.selectedarray_array[this.selectednum_index][trNum].unit_val_pres
       this.selectedarray_array[this.selectednum_index][trNum].disp = this.selectedarray_array[this.selectednum_index][trNum].val.toString();
+    }
+    if (this.selectednum_index === 0) {
+      // this.selectedarray_array[0][this.selectednum_array[0]].disp = this.selectedarray_array[0][this.selectednum_array[0]].disp
+      this.selectedarray_array[0][this.selectednum_array[0]].val = +this.selectedarray_array[0][this.selectednum_array[0]].disp
+      this.on_num_change(1)
+      console.log("IFFFFFF")
+    }
     // console.log("++++++++calc val after converting", this.numbers_array[trNum].val)
     // console.log("unit_val_past", this.numbers_array[trNum].unit_val_past)
     // console.log("unit_val_pres", this.numbers_array[trNum].unit_val_pres)

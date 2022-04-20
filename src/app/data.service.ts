@@ -144,9 +144,9 @@ export class DataService{
 
   autonum_7: ex_num = {
     id: 7,
-    val: 0,
+    val: 1,
     firstval: 0,
-    disp: "0",
+    disp: "1",
     unit_val_pres: 1,
     unit_val_past: 1,
     unit_type: "",
@@ -240,54 +240,54 @@ export class DataService{
     }
   }
 
-  autoUpdate() {
-    for (let i = 0; i < 8; i++) {
-      console.log("i: " + i)
-      let n: number = 0
-      let last_value: number = 0
-      switch(i) {
-        case (0): {n = 2
-          last_value = this.autonum_array[n].val
-          this.Cm_n_V()
-          console.log("case " + i + " n = " + n)}
-        case (1): {n = 8
-          last_value = this.autonum_array[n].val
-          this.Cn_Cm_ef()
-          console.log("case " + i + " n = " + n)}
-        case (2): {n = 1
-          last_value = this.autonum_array[n].val
-          this.V_n_Cm()
-          console.log("case " + i + " n = " + n)}
-        case (3): {n = 4
-          last_value = this.autonum_array[n].val
-          this.m_n_M()
-          console.log("case " + i + " n = " + n)}
-        case (4): {n = 5
-          last_value = this.autonum_array[n].val
-          this.M_m_n()
-          console.log("case " + i + " n = " + n)}
-        case 5: {n = 3
-          last_value = this.autonum_array[n].val
-          this.d_ms_v()
-          console.log("case " + i + " n = " + n)}
-        case 6: {n = 6
-          last_value = this.autonum_array[n].val
-          this.ms_d_v()
-          console.log("case " + i + " n = " + n)}
-        case 7: {n = 0
-          last_value = this.autonum_array[n].val
-          this.n_m_M()
-          console.log("case " + i + " n = " + n)}
-      }
-      if (this.autonum_array[n].val === 0 || this.autonum_array[n].val === null || this.autonum_array[n].val === NaN) {
-        this.autonum_array[n].val = last_value
-        this.autonum_array[n].status = "notcalc"
-        console.log("notcalc")
-      }
-      this.autonum_array[n].disp = this.autonum_array[n].val.toString()
-      console.log("end of " + i + " loop")
-      console.log(this.autonum_array[n].val, n)
-    }
+  // autoUpdate_() {
+  //   for (let i = 0; i < 8; i++) {
+  //     console.log("i: " + i)
+  //     let n: number = 0
+  //     let last_value: number = 0
+  //     switch(i) {
+  //       case (0): {n = 2
+  //         last_value = this.autonum_array[n].val
+  //         this.Cm_n_V()
+  //         console.log("case " + i + " n = " + n)}
+  //       case (1): {n = 8
+  //         last_value = this.autonum_array[n].val
+  //         this.Cn_Cm_ef()
+  //         console.log("case " + i + " n = " + n)}
+  //       case (2): {n = 1
+  //         last_value = this.autonum_array[n].val
+  //         this.V_n_Cm()
+  //         console.log("case " + i + " n = " + n)}
+  //       case (3): {n = 4
+  //         last_value = this.autonum_array[n].val
+  //         this.m_n_M()
+  //         console.log("case " + i + " n = " + n)}
+  //       case (4): {n = 5
+  //         last_value = this.autonum_array[n].val
+  //         this.M_m_n()
+  //         console.log("case " + i + " n = " + n)}
+  //       case 5: {n = 3
+  //         last_value = this.autonum_array[n].val
+  //         this.d_ms_v()
+  //         console.log("case " + i + " n = " + n)}
+  //       case 6: {n = 6
+  //         last_value = this.autonum_array[n].val
+  //         this.ms_d_v()
+  //         console.log("case " + i + " n = " + n)}
+  //       case 7: {n = 0
+  //         last_value = this.autonum_array[n].val
+  //         this.n_m_M()
+  //         console.log("case " + i + " n = " + n)}
+  //     }
+  //     if (this.autonum_array[n].val === 0 || this.autonum_array[n].val === null || this.autonum_array[n].val === NaN) {
+  //       this.autonum_array[n].val = last_value
+  //       this.autonum_array[n].status = "notcalc"
+  //       console.log("notcalc")
+  //     }
+  //     this.autonum_array[n].disp = this.autonum_array[n].val.toString()
+  //     console.log("end of " + i + " loop")
+  //     console.log(this.autonum_array[n].val, n)
+  //   }
       // try {
       //   switch(i) {
       //     case 0: {n = 2
@@ -327,19 +327,202 @@ export class DataService{
     //   }
     //   console.log("i: " + i)
     // }
+  // }
+
+  counter: number = 0
+  autoUpdate() {
+    // if (this.autonum_array[1].val !== 0) {
+    //   this.autonum_array[2].val = this.autonum_array[0].val / this.autonum_array[1].val
+    //   this.autonum_array[2].status = "calc"
+    //   this.autonum_array[2].disp = this.autonum_array[2].val.toString()}
+    // else if (this.autonum_array[2].val !== 0) {
+    //   this.autonum_array[1].val = this.autonum_array[0].val / this.autonum_array[2].val
+    //   this.autonum_array[1].status = "calc"
+    //   this.autonum_array[1].disp = this.autonum_array[1].val.toString()}
+    // else{
+    //   this.autonum_array[2].val = 0
+    //   this.autonum_array[2].status = "notcalc"
+    //   this.autonum_array[2].disp = this.autonum_array[2].val.toString()
+    //   this.autonum_array[1].val = 0
+    //   this.autonum_array[1].status = "notcalc"
+    //   this.autonum_array[1].disp = this.autonum_array[1].val.toString()
+    // }
+    // if (this.autonum_array[7].val !== 0 && this.autonum_array[2].val !== 0) {
+    //     this.autonum_array[8].val = this.autonum_array[2].val / this.autonum_array[7].val
+    //     this.autonum_array[8].status = "calc"
+    //     this.autonum_array[8].disp = this.autonum_array[8].val.toString()}
+    // else if (this.autonum_array[8].val !== 0 && this.autonum_array[2].val !== 0) {
+    //   this.autonum_array[7].val = this.autonum_array[2].val / this.autonum_array[8].val
+    //   this.autonum_array[7].status = "calc"
+    //   this.autonum_array[7].disp = this.autonum_array[7].val.toString()}
+    // else {
+    //   if (this.autonum_array[8].val === 0) {
+    //     this.autonum_array[8].status = "notcalc"}
+    //   else if (this.autonum_array[7].val === 0) {
+    //     this.autonum_array[7].status = "notcalc"}
+    // }
+    // if (this.autonum_array[8].val !== 0 && this.autonum_array[7].val !== 0) {
+    //   this.autonum_array[2].val = this.autonum_array[8].val * this.autonum_array[7].val
+    //   this.autonum_array[2].status = "calc"
+    //   this.autonum_array[2].disp = this.autonum_array[2].val.toString()}
+    // if (this.autonum_array[5].val !== 0) {
+    //   this.autonum_array[4].val = this.autonum_array[0].val * this.autonum_array[5].val
+    //   this.autonum_array[4].status = "calc"
+    //   this.autonum_array[4].disp = this.autonum_array[4].val.toString()}
+    // else if (this.autonum_array[4].val !== 0) {
+    //   this.autonum_array[5].val = this.autonum_array[4].val / this.autonum_array[0].val
+    //   this.autonum_array[5].status = "calc"
+    //   this.autonum_array[5].disp = this.autonum_array[5].val.toString()}
+    // else {
+    //   this.autonum_array[4].val = 0
+    //   this.autonum_array[4].status = "notcalc"
+    //   this.autonum_array[4].disp = this.autonum_array[4].val.toString()
+    //   this.autonum_array[5].val = 0
+    //   this.autonum_array[5].status = "notcalc"
+    //   this.autonum_array[5].disp = this.autonum_array[5].val.toString()
+    // }
+    // if (this.autonum_array[6].val !== 0 && this.autonum_array[1].val !== 0) {
+    //   this.autonum_array[3].val = this.autonum_array[6].val / this.autonum_array[1].val
+    //   this.autonum_array[3].status = "calc"
+    //   this.autonum_array[3].disp = this.autonum_array[3].val.toString()}
+    // else if (this.autonum_array[3].val !== 0 && this.autonum_array[1].val !== 0) {
+    //   this.autonum_array[6].val = this.autonum_array[3].val * this.autonum_array[1].val
+    //   this.autonum_array[6].status = "calc"
+    //   this.autonum_array[6].disp = this.autonum_array[6].val.toString()}
+    // else {
+    //   if (this.autonum_array[3].val === 0) {
+    //     this.autonum_array[3].status = "notcalc"
+    //   }
+    //   // this.autonum_array[3].val = 0
+    //   // this.autonum_array[3].disp = this.autonum_array[3].val.toString()
+    //   if (this.autonum_array[6].val === 0) {
+    //     this.autonum_array[6].status = "notcalc"
+    //   }
+    //   // this.autonum_array[6].val = 0
+    //   // this.autonum_array[6].status = "notcalc"
+    //   // this.autonum_array[6].disp = this.autonum_array[6].val.toString()
+    // }
+    if (this.autonum_array[0].val === 0 || this.autonum_array[0].status !== "idle") {
+      if (this.autonum_array[1].val !== 0 && this.autonum_array[2].val !== 0) {
+        this.autonum_array[0].val = this.autonum_array[2].val * this.autonum_array[1].val
+        this.autonum_array[0].status = "calc"
+        this.autonum_array[0].disp = this.autonum_array[2].val.toString()
+      }
+      else if (this.autonum_array[5].val !== 0 && this.autonum_array[4].val !== 0) {
+        this.autonum_array[0].val = this.autonum_array[4].val / this.autonum_array[5].val
+        this.autonum_array[0].status = "calc"
+        this.autonum_array[0].disp = this.autonum_array[0].val.toString()
+      }
+      else {
+        this.autonum_array[0].status = "notcalc"
+      }
+    }
+    if (this.autonum_array[1].val === 0 || this.autonum_array[1].status !== "idle") {
+      if (this.autonum_array[2].val !== 0 && this.autonum_array[0].val !== 0) {
+        this.autonum_array[1].val = this.autonum_array[0].val / this.autonum_array[2].val
+        this.autonum_array[1].status = "calc"
+        this.autonum_array[1].disp = this.autonum_array[1].val.toString()
+      }
+      else if (this.autonum_array[6].val !== 0 && this.autonum_array[3].val !== 0) {
+        this.autonum_array[1].val = this.autonum_array[6].val / this.autonum_array[3].val
+        this.autonum_array[1].status = "calc"
+        this.autonum_array[1].disp = this.autonum_array[1].val.toString()
+      }
+      else {
+        this.autonum_array[1].status = "notcalc"
+      }
+    }
+    if (this.autonum_array[2].val === 0 || this.autonum_array[2].status !== "idle") {
+      if (this.autonum_array[0].val !== 0 && this.autonum_array[1].val !== 0) {
+        this.autonum_array[2].val = this.autonum_array[0].val / this.autonum_array[1].val
+        this.autonum_array[2].status = "calc"
+        this.autonum_array[2].disp = this.autonum_array[2].val.toString()
+      }
+      else if (this.autonum_array[8].val !== 0 && this.autonum_array[7].val !== 0) {
+        this.autonum_array[2].val = this.autonum_array[8].val * this.autonum_array[7].val
+        this.autonum_array[2].status = "calc"
+        this.autonum_array[2].disp = this.autonum_array[2].val.toString()
+      }
+      else {
+        this.autonum_array[2].status = "notcalc"
+      }
+    }
+    if (this.autonum_array[3].val === 0 || this.autonum_array[3].status !== "idle") {
+      if (this.autonum_array[6].val !== 0 && this.autonum_array[1].val !== 0) {
+        this.autonum_array[3].val = this.autonum_array[6].val / this.autonum_array[1].val
+        this.autonum_array[3].status = "calc"
+        this.autonum_array[3].disp = this.autonum_array[3].val.toString()
+      }
+      else {
+        this.autonum_array[3].status = "notcalc"
+      }
+    }
+    if (this.autonum_array[4].val === 0 || this.autonum_array[4].status !== "idle") {
+      if (this.autonum_array[5].val !== 0 && this.autonum_array[0].val !== 0) {
+        this.autonum_array[4].val = this.autonum_array[5].val * this.autonum_array[0].val
+        this.autonum_array[4].status = "calc"
+        this.autonum_array[4].disp = this.autonum_array[4].val.toString()
+      }
+      else {
+        this.autonum_array[4].status = "notcalc"
+      }
+    }
+    if (this.autonum_array[5].val === 0 || this.autonum_array[5].status !== "idle") {
+      if (this.autonum_array[0].val !== 0 && this.autonum_array[4].val !== 0) {
+        this.autonum_array[5].val = this.autonum_array[4].val / this.autonum_array[0].val
+        this.autonum_array[5].status = "calc"
+        this.autonum_array[5].disp = this.autonum_array[5].val.toString()
+      }
+      else {
+        this.autonum_array[5].status = "notcalc"
+      }
+    }
+    if (this.autonum_array[6].val === 0 || this.autonum_array[6].status !== "idle") {
+      if (this.autonum_array[1].val !== 0 && this.autonum_array[3].val !== 0) {
+        this.autonum_array[6].val = this.autonum_array[1].val / this.autonum_array[3].val
+        this.autonum_array[6].status = "calc"
+        this.autonum_array[6].disp = this.autonum_array[6].val.toString()
+      }
+      else {
+        this.autonum_array[6].status = "notcalc"
+      }
+    }
+    if (this.autonum_array[7].val === 0 || this.autonum_array[7].status !== "idle") {
+      if (this.autonum_array[2].val !== 0 && this.autonum_array[8].val !== 0) {
+        this.autonum_array[7].val = this.autonum_array[2].val / this.autonum_array[8].val
+        this.autonum_array[7].status = "calc"
+        this.autonum_array[7].disp = this.autonum_array[7].val.toString()
+      }
+      else {
+        this.autonum_array[7].status = "notcalc"
+      }
+    }
+    if (this.autonum_array[8].val === 0 || this.autonum_array[8].status !== "idle") {
+      if (this.autonum_array[2].val !== 0 && this.autonum_array[7].val !== 0) {
+        this.autonum_array[8].val = this.autonum_array[2].val / this.autonum_array[7].val
+        this.autonum_array[8].status = "calc"
+        this.autonum_array[8].disp = this.autonum_array[8].val.toString()
+      }
+      else {
+        this.autonum_array[8].status = "notcalc"
+      }
+    }
+    if (this.counter < 2) {
+      this.counter += 1
+      this.autoUpdate()
+    }
+    else {this.counter = 0}
   }
 
-  Cm_n_V() {
-    this.autonum_array[2].val = this.autonum_array[0].val / this.autonum_array[1].val
-    this.autonum_array[2].status = "calc"
-    console.log("CONSOLE LOGGED")}
   Cn_Cm_ef() {
-    this.autonum_array[8].val = this.autonum_array[2].val / this.autonum_array[7].val
-    this.autonum_array[8].status = "calc"
+    if (this.autonum_array[7].val !== 0) {
+      this.autonum_array[8].val = this.autonum_array[2].val / this.autonum_array[7].val
+      this.autonum_array[8].status = "calc"}
   }
   V_n_Cm() {
-    this.autonum_array[1].val = this.autonum_array[0].val / this.autonum_array[2].val
-    this.autonum_array[1].status = "calc"
+    if (this.autonum_array[2].val !== 0) {
+      this.autonum_array[1].val = this.autonum_array[0].val / this.autonum_array[2].val
+      this.autonum_array[1].status = "calc"}
   }
   m_n_M() {
     this.autonum_array[4].val = this.autonum_array[0].val * this.autonum_array[5].val

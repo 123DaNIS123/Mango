@@ -33,8 +33,10 @@
 
 .calc-display {
   background-color: #f0f0f0;
-  padding: 60px 15px 20px;
+  // padding: 60px 15px 20px;
+  margin: 0 auto;
   color: black;
+  text-align: center;
 }
 
 ion-input {
@@ -44,10 +46,16 @@ ion-input {
 
 ion-label {
   color: #ffffff;
-  font-size: 48px;
+  font-size: 32px;
 }
 
 ion-col {
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+ion-row {
   padding: 0;
   margin: 0;
   text-align: center;

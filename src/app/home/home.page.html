@@ -12,14 +12,14 @@
       </ion-row>
     </div>
     <div class="calc-display">
-      <ion-row>
-        <ion-col (click)="number_selecting(1)">
+      <ion-col>
+        <ion-row (click)="number_selecting(1)">
           <ion-label class="calc-display">{{ dataService.numbers_array[1].disp }} {{ dataService.numbers_array[1].unit_type }}</ion-label>
-        </ion-col>
-        <ion-col>
+        </ion-row>
+        <ion-row>
           <ion-label class="calc-display" >{{ dataService.numbers_array[0].disp }} {{ dataService.numbers_array[0].unit_type }}</ion-label>
-        </ion-col>
-      </ion-row>
+        </ion-row>
+      </ion-col>
     </div>
     <ion-grid>
       <ion-row>
@@ -93,7 +93,7 @@
           <ion-button color="dark" (click)="add_number(0)">0</ion-button>
         </ion-col>
         <ion-col size="3">
-          <ion-button color="light" (click)="add_operator('=')">=</ion-button>
+          <ion-button color="light" (click)="calculate(0)">=</ion-button>
         </ion-col>
         <ion-col size="3">
           <ion-button color="light" (click)="add_operator('+')">+</ion-button>

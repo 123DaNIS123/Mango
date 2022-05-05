@@ -32,11 +32,19 @@ export class HomePage implements OnInit{
 
   add_number(num: number) {
     let disp_read = this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp
-    if (this.is_first_number === false) {if (disp_read.indexOf("e")===-1){
-      this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp += num.toString()}
-    else {
-      this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp = disp_read.slice(0, disp_read.indexOf("e")) + num.toString() + disp_read.slice(disp_read.indexOf("e"), disp_read.length)
-    }}
+    if (this.is_first_number === false) {if (this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp.length > 14) {
+      // if (!this.equals_pressed) {this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].firstval = +this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp}
+      // else {this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].val = +this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp}
+      // this.should_calculate = true;
+      // this.dataService.on_num_change(1)
+      return}
+      if (disp_read.indexOf("e")===-1){
+        this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp += num.toString()}
+      else {
+        // this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp = disp_read.slice(0, disp_read.indexOf("e")) + (+disp_read.slice(disp_read.indexOf("e"), disp_read.length) + 1).toString()
+        this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp = disp_read.slice(0, disp_read.indexOf("e")) + num.toString() + disp_read.slice(disp_read.indexOf("e"), disp_read.length)
+      }
+    }
     // else if (this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp.indexOf(".") === -1) {
     //   this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp = num.toString();
     //   console.log(this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp, "!)!)!)))!")
@@ -72,6 +80,7 @@ export class HomePage implements OnInit{
     else {this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].val = +this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp}
     this.should_calculate = true;
     this.dataService.on_num_change(1)
+    console.log(this.dataService.selectedarray_array[0][this.dataService.selectednum_array[1]].disp)
   }
 
   add_operator(str: string) {
@@ -105,14 +114,15 @@ export class HomePage implements OnInit{
       this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].val = 0;
       this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].firstval = 0;
       this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp = "0";
-      this.dataService.on_num_change(this.dataService.selectednum_array[0])
+      this.dataService.on_num_change(1);
       this.should_calculate = false;
     }
     else {
       this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].firstval = 0;
       this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp = this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].val.toString();
-      this.dataService.on_num_change(this.dataService.selectednum_array[0])
+      this.dataService.on_num_change(1);
     }
+    this.should_calculate = false;
     this.is_first_number = true;
     this.is_c = false;
     // this.is_comma = false;
@@ -122,13 +132,13 @@ export class HomePage implements OnInit{
   percent() {
     this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].val /= 100;
     this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp = this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].val.toString();
-    this.dataService.on_num_change(this.dataService.selectednum_array[0]);
+    this.dataService.on_num_change(1);
   }
 
   plus_minus_switch() {
     this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].val *= -1;
     this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp = this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].val.toString();
-    this.dataService.on_num_change(this.dataService.selectednum_array[0]);
+    this.dataService.on_num_change(1);
   }
  
   calculate(source: number = 1) {
@@ -163,7 +173,8 @@ export class HomePage implements OnInit{
     this.is_c = false;
     this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].firstval = 0;
     this.should_calculate = false;
-    this.dataService.on_num_change(this.dataService.selectednum_array[0]);
+    // this.dataService.on_num_change(this.dataService.selectednum_array[0]);
+    this.dataService.on_num_change(1);
   }
 
   // checkIfFloat() {

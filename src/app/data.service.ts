@@ -331,6 +331,7 @@ export class DataService{
 
   counter: number = 0
   autoUpdate() {
+    let selectedVal: number = null;
     // if (this.autonum_array[1].val !== 0) {
     //   this.autonum_array[2].val = this.autonum_array[0].val / this.autonum_array[1].val
     //   this.autonum_array[2].status = "calc"
@@ -402,7 +403,7 @@ export class DataService{
     //   // this.autonum_array[6].status = "notcalc"
     //   // this.autonum_array[6].disp = this.autonum_array[6].val.toString()
     // }
-    if (this.autonum_array[0].val === 0 || (this.autonum_array[0].status !== "idle" && this.autonum_array[0].status !== "selected")) {
+    if (this.autonum_array[0].status !== "selected") {
       if (this.autonum_array[1].val !== 0 && this.autonum_array[2].val !== 0) {
         this.autonum_array[0].val = this.autonum_array[2].val * this.autonum_array[1].val
         this.autonum_array[0].status = "calc"
@@ -417,7 +418,8 @@ export class DataService{
         this.autonum_array[0].status = "notcalc"
       }
     }
-    if (this.autonum_array[1].val === 0 || (this.autonum_array[0].status !== "idle" && this.autonum_array[0].status !== "selected")) {
+    else {selectedVal = 0}
+    if (this.autonum_array[1].status !== "selected") {
       if (this.autonum_array[2].val !== 0 && this.autonum_array[0].val !== 0) {
         this.autonum_array[1].val = this.autonum_array[0].val / this.autonum_array[2].val
         this.autonum_array[1].status = "calc"
@@ -432,7 +434,8 @@ export class DataService{
         this.autonum_array[1].status = "notcalc"
       }
     }
-    if (this.autonum_array[2].val === 0 || (this.autonum_array[0].status !== "idle" && this.autonum_array[0].status !== "selected")) {
+    else {selectedVal = 1}
+    if (this.autonum_array[2].status !== "selected") {
       if (this.autonum_array[0].val !== 0 && this.autonum_array[1].val !== 0) {
         this.autonum_array[2].val = this.autonum_array[0].val / this.autonum_array[1].val
         this.autonum_array[2].status = "calc"
@@ -447,7 +450,8 @@ export class DataService{
         this.autonum_array[2].status = "notcalc"
       }
     }
-    if (this.autonum_array[3].val === 0 || (this.autonum_array[0].status !== "idle" && this.autonum_array[0].status !== "selected")) {
+    else {selectedVal = 2}
+    if (this.autonum_array[3].status !== "selected") {
       if (this.autonum_array[6].val !== 0 && this.autonum_array[1].val !== 0) {
         this.autonum_array[3].val = this.autonum_array[6].val / this.autonum_array[1].val
         this.autonum_array[3].status = "calc"
@@ -457,7 +461,8 @@ export class DataService{
         this.autonum_array[3].status = "notcalc"
       }
     }
-    if (this.autonum_array[4].val === 0 || (this.autonum_array[0].status !== "idle" && this.autonum_array[0].status !== "selected")) {
+    else {selectedVal = 3}
+    if (this.autonum_array[4].status !== "selected") {
       if (this.autonum_array[5].val !== 0 && this.autonum_array[0].val !== 0) {
         this.autonum_array[4].val = this.autonum_array[5].val * this.autonum_array[0].val
         this.autonum_array[4].status = "calc"
@@ -467,7 +472,8 @@ export class DataService{
         this.autonum_array[4].status = "notcalc"
       }
     }
-    if (this.autonum_array[5].val === 0 || (this.autonum_array[0].status !== "idle" && this.autonum_array[0].status !== "selected")) {
+    else {selectedVal = 4}
+    if (this.autonum_array[5].status !== "selected") {
       if (this.autonum_array[0].val !== 0 && this.autonum_array[4].val !== 0) {
         this.autonum_array[5].val = this.autonum_array[4].val / this.autonum_array[0].val
         this.autonum_array[5].status = "calc"
@@ -477,7 +483,8 @@ export class DataService{
         this.autonum_array[5].status = "notcalc"
       }
     }
-    if (this.autonum_array[6].val === 0 || (this.autonum_array[0].status !== "idle" && this.autonum_array[0].status !== "selected")) {
+    else {selectedVal = 5}
+    if (this.autonum_array[6].status !== "selected") {
       if (this.autonum_array[1].val !== 0 && this.autonum_array[3].val !== 0) {
         this.autonum_array[6].val = this.autonum_array[1].val / this.autonum_array[3].val
         this.autonum_array[6].status = "calc"
@@ -487,7 +494,8 @@ export class DataService{
         this.autonum_array[6].status = "notcalc"
       }
     }
-    if (this.autonum_array[7].val === 0 || (this.autonum_array[0].status !== "idle" && this.autonum_array[0].status !== "selected")) {
+    else {selectedVal = 6}
+    if (this.autonum_array[7].status !== "selected") {
       if (this.autonum_array[2].val !== 0 && this.autonum_array[8].val !== 0) {
         this.autonum_array[7].val = this.autonum_array[2].val / this.autonum_array[8].val
         this.autonum_array[7].status = "calc"
@@ -497,7 +505,8 @@ export class DataService{
         this.autonum_array[7].status = "notcalc"
       }
     }
-    if (this.autonum_array[8].val === 0 || (this.autonum_array[0].status !== "idle" && this.autonum_array[0].status !== "selected")) {
+    else {selectedVal = 7}
+    if (this.autonum_array[8].status !== "selected") {
       if (this.autonum_array[2].val !== 0 && this.autonum_array[7].val !== 0) {
         this.autonum_array[8].val = this.autonum_array[2].val / this.autonum_array[7].val
         this.autonum_array[8].status = "calc"
@@ -507,11 +516,14 @@ export class DataService{
         this.autonum_array[8].status = "notcalc"
       }
     }
-    if (this.counter < 2) {
+    else {selectedVal = 8}
+    if (this.counter < 1) {
       this.counter += 1
       this.autoUpdate()
     }
-    else {this.counter = 0}
+    else {this.counter = 0
+      this.autonum_array[selectedVal].status = "idle"
+      selectedVal = null}
   }
 
   Cn_Cm_ef() {

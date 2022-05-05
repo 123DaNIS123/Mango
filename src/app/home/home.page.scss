@@ -27,13 +27,14 @@
 // }
 
 .calc-main {
-  background-color: #000000;
+  background-color: #f0f0f0;
   height: 100%;
 }
 
 .calc-display {
-  background-color: #000000;
+  background-color: #f0f0f0;
   padding: 60px 15px 20px;
+  color: black;
 }
 
 ion-input {
@@ -55,8 +56,14 @@ ion-col {
 ion-button {
   height: 50px;
   width: 50px;
-  border-radius: 50;
+  // border-radius: 50;
   font-size: 20px;
+  border: 2px solid #02afff;
+}
+
+.wide-button {
+  height: 40px;
+  width: 300px;
 }
 
 .double-width {

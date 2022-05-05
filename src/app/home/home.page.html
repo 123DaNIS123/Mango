@@ -1,6 +1,10 @@
 <ion-content [fullscreen]="true">
-  <ion-button (click)="goToPage()" class="wide-button">to AutoConverter</ion-button>
   <div class="calc-main">
+    <ion-row>
+      <ion-col>
+        <ion-button (click)="goToPage()" class="wide-button">to AutoConverter</ion-button>
+      </ion-col>
+    </ion-row>
     <div class="units-selector">
       <ion-row>
         <ion-col>
@@ -11,7 +15,7 @@
         </ion-col>
       </ion-row>
     </div>
-    <div class="calc-display">
+    <div class="calc-display" style="height: 18%;">
       <ion-col>
         <ion-row (click)="number_selecting(1)">
           <ion-label class="calc-display">{{ dataService.numbers_array[1].disp }} {{ dataService.numbers_array[1].unit_type }}</ion-label>
@@ -21,7 +25,7 @@
         </ion-row>
       </ion-col>
     </div>
-    <ion-grid>
+    <ion-grid style="height: 70%; position: static">
       <ion-row>
         <ion-col>
           <ion-button color="light" *ngIf="!is_c" (click)="clear('AC')">AC</ion-button>

@@ -1,11 +1,11 @@
-<ion-content [fullscreen]="true">
+<ion-content>
   <div class="calc-main">
     <ion-row>
       <ion-col>
-        <ion-button (click)="goToPage()" class="wide-button">to AutoConverter</ion-button>
+        <ion-button (click)="goToPage()" class="switch-button" color="tertiary">to AutoConverter</ion-button>
       </ion-col>
     </ion-row>
-    <div class="units-selector">
+    <!-- <div class="units-selector">
       <ion-row>
         <ion-col>
           <ion-button id="list-opener-1" (click)="onModalOpen(1)" class="wide-button">Select the unit</ion-button>
@@ -14,18 +14,22 @@
           <ion-button id="list-opener-2" (click)="onModalOpen(0)" class="wide-button">Select the unit</ion-button>
         </ion-col>
       </ion-row>
-    </div>
-    <div class="calc-display" style="height: 18%;">
+    </div> -->
+    <!-- style="height: 18%;" -->
+    <div class="calc-display">
       <ion-col>
-        <ion-row (click)="number_selecting(1)">
-          <ion-label class="calc-display">{{ dataService.numbers_array[1].disp }} {{ dataService.numbers_array[1].unit_type }}</ion-label>
+        <ion-row (click)="onModalOpen(1)">
+          <ion-label class="calc-display-left">{{ dataService.numbers_array[1].unit_type }}</ion-label>
+          <ion-label class="calc-display-right">{{ dataService.numbers_array[1].disp }}</ion-label>
         </ion-row>
-        <ion-row>
-          <ion-label class="calc-display" >{{ dataService.numbers_array[0].disp }} {{ dataService.numbers_array[0].unit_type }}</ion-label>
+        <ion-row (click)="onModalOpen(0)">
+          <ion-label class="calc-display-left">{{ dataService.numbers_array[0].unit_type }}</ion-label>
+          <ion-label class="calc-display-right">{{ dataService.numbers_array[0].disp }}</ion-label>
         </ion-row>
       </ion-col>
     </div>
-    <ion-grid style="height: 70%; position: static">
+    <!-- style="height: 70%; position: static" -->
+    <ion-grid class="calc-grid">
       <ion-row>
         <ion-col>
           <ion-button color="light" *ngIf="!is_c" (click)="clear('AC')">AC</ion-button>

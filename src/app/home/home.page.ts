@@ -105,9 +105,9 @@ export class HomePage implements OnInit{
     }
   }
 
-  number_selecting(num: number) {
-    if (num !== 0) {this.dataService.selectednum_array[0] = num;}
-  }
+  // number_selecting(num: number) {
+  //   if (num !== 0) {this.dataService.selectednum_array[0] = num;}
+  // }
 
   clear(kind: string) {
     if (kind === "AC") {
@@ -196,21 +196,24 @@ export class HomePage implements OnInit{
 
   async presentTypeModal() {
     const modal = await this.ModalCtrl.create({
-      component: TypeModalComponent
+      component: TypeModalComponent,
+      cssClass: "options_modal"
     });
     return await modal.present();
   }
 
   async presentUnitsModal() {
     const modal = await this.ModalCtrl.create({
-      component: UnitsModalComponent
+      component: UnitsModalComponent,
+      cssClass: "options_modal"
     });
     return await modal.present();
   }
 
   async presentUnitsTwoModal() {
     const modal = await this.ModalCtrl.create({
-      component: UnitsTwoModalComponent
+      component: UnitsTwoModalComponent,
+      cssClass: "options_modal"
     });
     return await modal.present();
   }
@@ -223,6 +226,7 @@ export class HomePage implements OnInit{
   ngOnInit(): void {
     this.dataService.onStartFunc();
     this.dataService.selectednum_index = 0
+    this.dataService.selectednum_array[0] = 1
   }
 
 }

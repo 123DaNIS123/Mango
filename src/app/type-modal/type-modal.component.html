@@ -1,3 +1,6 @@
+<ion-button (click)="this.modalCtrl.dismiss()">
+  Close
+</ion-button>
 <ion-list>
   <ion-item *ngFor="let unit of units">
     <ion-button (click)="onMeasurementSelect(unit.id)">{{ unit.name }}</ion-button>

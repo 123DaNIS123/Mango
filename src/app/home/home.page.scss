@@ -44,12 +44,13 @@
 }
 
 .calc-display-left {
-  font-size: 2.5vh;
-  padding-top: 2.2vh
+  width: 8vw;
+  font-size: 4vw;
+  text-align: center;
 }
 
 .calc-display-right {
-  font-size: 5vh;
+  font-size: 8.5vw;
 }
 
 .calc-display ion-col ion-row ion-label {
@@ -65,19 +66,15 @@
 // }
 
 ion-button {
-  width: 8vh;
-  height: 8vh;
+  width: 21vw;
+  height: 13vh;
   // border-radius: 50;
   font-size: 4vh;
 }
 
 .switch-button {
-  width: 35vw;
-  height: 5vh;
-  font-size: 1.35vh;
+  width: 38vw;
+  height: 6vh;
+  font-size: 3vw;
   margin: 1vh 30vw 1vh 30vw;
-}
-
-.calc-grid {
-  margin: center;
 }

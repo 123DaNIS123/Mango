@@ -33,7 +33,7 @@
 
 .calc-display {
   background-color: #f0f0f0;
-  height: 20vh;
+  height: 30vh;
 }
 
 .calc-display ion-col ion-row {
@@ -44,17 +44,21 @@
 }
 
 .calc-display-left {
-  width: 8vw;
-  font-size: 4vw;
-  text-align: center;
+  width: 10vw;
+  height: 15h;
+  font-size: auto;
 }
 
 .calc-display-right {
-  font-size: 8.5vw;
+  font-size: auto;
 }
 
 .calc-display ion-col ion-row ion-label {
   color: black;
+}
+
+.calc-grid {
+  margin: center center;
 }
 
 // ion-col {
@@ -66,10 +70,10 @@
 // }
 
 ion-button {
-  width: 21vw;
-  height: 13vh;
+  width: 22.2vw;
+  height: 11.2vh;
   // border-radius: 50;
-  font-size: 4vh;
+  font-size: 6vw;
 }
 
 .switch-button {

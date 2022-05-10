@@ -197,7 +197,7 @@ export class HomePage implements OnInit{
   async presentTypeModal() {
     const modal = await this.ModalCtrl.create({
       component: TypeModalComponent,
-      cssClass: "options_modal"
+      cssClass: 'one-column-modal'
     });
     return await modal.present();
   }
@@ -205,7 +205,7 @@ export class HomePage implements OnInit{
   async presentUnitsModal() {
     const modal = await this.ModalCtrl.create({
       component: UnitsModalComponent,
-      cssClass: "options_modal"
+      cssClass: 'one-column-modal'
     });
     return await modal.present();
   }
@@ -213,7 +213,7 @@ export class HomePage implements OnInit{
   async presentUnitsTwoModal() {
     const modal = await this.ModalCtrl.create({
       component: UnitsTwoModalComponent,
-      cssClass: "options_modal"
+      cssClass: 'two-column-modal'
     });
     return await modal.present();
   }

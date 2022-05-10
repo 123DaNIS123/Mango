@@ -25,6 +25,34 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
+.one-column-modal{
+
+    &::part(content) {
+        height: 80vh;
+        width: 75vw;
+        margin: auto auto;
+    }
+
+    &::part(backdrop) {
+        background-color: rgb(229, 237, 240);
+        backdrop-filter:blur(1px)
+    }
+}
+
+.two-column-modal{
+
+    &::part(content) {
+        height: 80vh;
+        width: 85vw;
+        margin: auto auto;
+    }
+
+    &::part(backdrop) {
+        background-color: rgb(229, 237, 240);
+        backdrop-filter:blur(1px)
+    }
+}
+
 // .modal-wrapper.sc-ion-modal-md {
 //     width: 95vw;
 //     margin: auto auto;

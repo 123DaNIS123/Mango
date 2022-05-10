@@ -81,14 +81,16 @@ export class TypeModalComponent{
 
   async presentModal() {
     const modal = await this.ModalCtrl.create({
-      component: UnitsModalComponent
+      component: UnitsModalComponent,
+      cssClass: 'one-column-modal'
     });
     return await modal.present();
   }
 
   async presentTwoModal() {
     const modal = await this.ModalCtrl.create({
-      component: UnitsTwoModalComponent
+      component: UnitsTwoModalComponent,
+      cssClass: 'two-column-modal'
     });
     return await modal.present();
   }

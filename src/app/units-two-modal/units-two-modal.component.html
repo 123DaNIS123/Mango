@@ -1,19 +1,19 @@
 <ion-content>
-  <ion-button (click)="this.ModalCtrl.dismiss()">
+  <ion-button class="close-button" color="light" (click)="this.ModalCtrl.dismiss()">
     Close
   </ion-button>
   <ion-row>
     <ion-col>
       <ion-list>
         <ion-item *ngFor="let item of dataService.selectedUnitsKeys[0]">
-          <ion-button (click)="onUnitFirstSelect(item)">{{ item }}</ion-button>
+          <ion-button class="selection-button" color="tertiary" (click)="onUnitFirstSelect(item)">{{ item }}</ion-button>
         </ion-item>
       </ion-list>
     </ion-col>
     <ion-col>
       <ion-list>
         <ion-item *ngFor="let item of dataService.selectedUnitsKeys[1]">
-          <ion-button (click)="onUnitSecondSelect(item)">{{ item }}</ion-button>
+          <ion-button class="selection-button" color="tertiary" (click)="onUnitSecondSelect(item)">{{ item }}</ion-button>
         </ion-item>
       </ion-list>
     </ion-col>

@@ -35,33 +35,76 @@
 
     &::part(backdrop) {
         background-color: rgb(229, 237, 240);
-        backdrop-filter:blur(1px)
+        backdrop-filter:blur(3px)
     }
 
-    &::part(content) ion-button{
-        width:50vw;
-        height: 5hv;
-        margin-top: 5hv;
+    .close-button {
+        width:60vw;
+        height: 2.3vh;
+        margin-bottom: 1vh;
+        margin-left: 8vw;
+        font-size: 3.5vw;
+        text-align: center;
+        text-transform: none;
     }
 
-    ion-button {
-        width:50vw;
-        height: 20hv;
-        margin-top: 5hv;
+    .selection-button {
+        width:68vw;
+        height: 5vh;
+        margin-top: 1vh;
+        margin-left: 3vw;
+        font-size: 3.8vw;
+        text-align: center;
+        text-transform: none;
     }
+
+
+    // ion-button {
+    //     width:50vw;
+    //     height: 20hv;
+    //     margin-top: 5hv;
+    // }
 }
 
 .two-column-modal{
 
     &::part(content) {
         height: 80vh;
-        width: 85vw;
+        width: 75vw;
         margin: auto auto;
     }
 
     &::part(backdrop) {
         background-color: rgb(229, 237, 240);
-        backdrop-filter:blur(1px)
+        backdrop-filter:blur(3px)
+    }
+
+    .close-button {
+        width:60vw;
+        height: 2.3vh;
+        margin-bottom: 1vh;
+        margin-left: 8vw;
+        font-size: 3.5vw;
+        text-align: center;
+        text-transform: none;
+    }
+
+    // .selection-button {
+    //     width:30vw;
+    //     height: 2.8vh;
+    //     margin-top: 1vh;
+    //     font-size: 2.8vw;
+    //     text-align: center;
+    // }
+
+    .selection-button {
+        width:30vw;
+        height: 4vh;
+        margin-top: 1vh;
+        margin-left: 3vw;
+        font-size: 2.8vw;
+        text-align: center;
+        text-transform: none;
     }
 }
 

@@ -37,6 +37,18 @@
         background-color: rgb(229, 237, 240);
         backdrop-filter:blur(1px)
     }
+
+    &::part(content) ion-button{
+        width:50vw;
+        height: 5hv;
+        margin-top: 5hv;
+    }
+
+    ion-button {
+        width:50vw;
+        height: 20hv;
+        margin-top: 5hv;
+    }
 }
 
 .two-column-modal{

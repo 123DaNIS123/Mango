@@ -11,7 +11,7 @@ import { units } from '../units';
 })
 export class UnitsTwoModalComponent implements OnInit {
 
-  constructor(private modalCtrl: ModalController, private dataService: DataService) {}
+  constructor(private ModalCtrl: ModalController, private dataService: DataService) {}
 
   units = units;
 
@@ -28,7 +28,7 @@ export class UnitsTwoModalComponent implements OnInit {
   //   this.selectedUnitType = str;
   //   console.log(this.selectedUnit);
   //   this.dataService.setSelectedUnits(this.selectedUnit, this.selectedUnitType, this.dataService.translateNum);
-  //   this.modalCtrl.dismiss();
+  //   this.ModalCtrl.dismiss();
   // }
 
   onUnitFirstSelect(str: string) {
@@ -43,7 +43,7 @@ export class UnitsTwoModalComponent implements OnInit {
     }
     if (this.selected_count == 2){
       this.selected_count = 0
-      this.modalCtrl.dismiss();
+      this.ModalCtrl.dismiss();
     }
     this.selected_count = 1
   }
@@ -61,7 +61,7 @@ export class UnitsTwoModalComponent implements OnInit {
     }
     if (this.selected_count == 1){
       this.selected_count = 0
-      this.modalCtrl.dismiss();
+      this.ModalCtrl.dismiss();
     }
     this.selected_count = 2
   }

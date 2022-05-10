@@ -12,7 +12,7 @@ import { DataService } from '../data.service';
   styleUrls: ['./units-modal.component.scss'],
 })
 export class UnitsModalComponent{
-  constructor(private modalCtrl: ModalController, private dataService: DataService) {}
+  constructor(private ModalCtrl: ModalController, private dataService: DataService) {}
 
   selectedUnit?: number;
   selectedUnitType?: string;
@@ -22,7 +22,7 @@ export class UnitsModalComponent{
     this.selectedUnitType = str;
     console.log(this.selectedUnit);
     this.dataService.setSelectedUnits(this.selectedUnit, this.selectedUnitType, this.dataService.selectedtrnum_array[this.dataService.selectednum_index]);
-    this.modalCtrl.dismiss();
+    this.ModalCtrl.dismiss();
   }
 
   // get SelectedNumberUnit() {

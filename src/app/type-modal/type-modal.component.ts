@@ -66,8 +66,8 @@ export class TypeModalComponent{
       first_column = true
       if (this.dataService.selectednum_index === 0 && this.dataService.unitsRecord !== units[num - 1].unitsRecord && this.dataService.selectedtrnum_array[this.dataService.selectednum_index] !== 0) {
         console.log(this.dataService.selectedUnitsTypes[0]);
-        this.dataService.setSelectedUnits(this.dataService.selectedUnitsTypes[0][0], this.dataService.selectedUnitsKeys[0][0] + "/L (dm3)", 0);
-        this.dataService.setSelectedUnits(this.dataService.selectedUnitsTypes[0][0], this.dataService.selectedUnitsKeys[0][0] + "/L (dm3)", 1);
+        this.dataService.setSelectedUnits(this.dataService.selectedUnitsTypes[0][0], this.dataService.selectedUnitsKeys[0][0] + "/L", 0);
+        this.dataService.setSelectedUnits(this.dataService.selectedUnitsTypes[0][0], this.dataService.selectedUnitsKeys[0][0] + "/L", 1);
         console.log("ifed");
       }
       this.dataService.unitsRecord = units[num - 1].unitsRecord;

@@ -71,7 +71,7 @@ export class DataService{
     disp: "0",
     unit_val_pres: 1,
     unit_val_past: 1,
-    unit_type: "L (dm3)",
+    unit_type: "L",
     param_name: "volume",
     status: "idle",
     unit_id: 2
@@ -84,7 +84,7 @@ export class DataService{
     disp: "0",
     unit_val_pres: 1,
     unit_val_past: 1,
-    unit_type: "mol/L (dm3)",
+    unit_type: "mol/L",
     param_name: "molar concentration",
     status: "idle",
     unit_id: 3
@@ -97,7 +97,7 @@ export class DataService{
     disp: "0",
     unit_val_pres: 1,
     unit_val_past: 1,
-    unit_type: "kg/L (dm3)",
+    unit_type: "g/L",
     param_name: "density",
     status: "idle",
     unit_id: 6
@@ -110,7 +110,7 @@ export class DataService{
     disp: "0",
     unit_val_pres: 1,
     unit_val_past: 1,
-    unit_type: "gram",
+    unit_type: "g",
     param_name: "substance mass",
     status: "idle",
     unit_id: 5
@@ -123,7 +123,7 @@ export class DataService{
     disp: "0",
     unit_val_pres: 1,
     unit_val_past: 1,
-    unit_type: "gram/mol",
+    unit_type: "g/mol",
     param_name: "molar mass",
     status: "idle",
     unit_id: 8
@@ -136,7 +136,7 @@ export class DataService{
     disp: "0",
     unit_val_pres: 1,
     unit_val_past: 1,
-    unit_type: "gram",
+    unit_type: "g",
     param_name: "solution mass",
     status: "idle",
     unit_id: 5
@@ -162,7 +162,7 @@ export class DataService{
     disp: "0",
     unit_val_pres: 1,
     unit_val_past: 1,
-    unit_type: "eq/L (dm3)",
+    unit_type: "eq/L",
     param_name: "equivalent concentration",
     status: "idle",
     unit_id: 4

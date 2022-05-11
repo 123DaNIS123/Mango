@@ -46,11 +46,16 @@
 .calc-display-left {
   width: 100vw;
   height: 5vh;
-  font-size: 6vw;
+  font-size: 3.8vh;
 }
 
 .calc-display-right {
-  font-size: 9.15vw;
+  @media (max-aspect-ratio: 12/13) {
+    font-size: 9.15vw;
+  }
+  @media (min-aspect-ratio: 12/13) {
+    font-size: 6.5vh;
+  }
 }
 
 .calc-display ion-col ion-row ion-label {
@@ -70,16 +75,28 @@
 // }
 
 ion-button {
-  width: 22.2vw;
-  height: 10.4vh;
+  width: 15vw;
+  height: 7.5vh;
   // border-radius: 50;
-  font-size: 6vw;
+  // font-size: 6vw;
+  @media (max-aspect-ratio: 13/21) {
+    font-size: 5.5vw;
+  }
+  @media (min-aspect-ratio: 13/21) {
+    font-size: 5vh;
+  }
 }
 
 .switch-button {
   width: 38vw;
-  height: 6vh;
-  font-size: 3vw;
+  height: 5.5vh;
+  // font-size: 4vw;
   margin: 1vh 30vw 1vh 30vw;
   text-transform: none;
+  @media (max-aspect-ratio: 17/21) {
+    font-size: 4vw;
+  }
+  @media (min-aspect-ratio: 17/21) {
+    font-size: 3.5vh;
+  }
 }

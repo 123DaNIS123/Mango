@@ -32,79 +32,79 @@
     <ion-grid class="calc-grid">
       <ion-row>
         <ion-col>
-          <ion-button color="light" *ngIf="!is_c" (click)="clear('AC')">AC</ion-button>
-          <ion-button color="light" *ngIf="is_c" (click)="clear('C')">C</ion-button>
+          <ion-button color="dark" *ngIf="!is_c" (click)="clear('AC')">AC</ion-button>
+          <ion-button color="dark" *ngIf="is_c" (click)="clear('C')">C</ion-button>
         </ion-col>
         <ion-col>
-          <ion-button color="light" (click)="plus_minus_switch('+/-')">+/-</ion-button>
+          <ion-button color="dark" (click)="plus_minus_switch('+/-')">+/-</ion-button>
         </ion-col>
         <ion-col>
-          <ion-button color="light" (click)="percent()">%</ion-button>
+          <ion-button color="dark" (click)="percent()">%</ion-button>
         </ion-col>
         <!-- <ion-col>
-          <ion-button  color="light" (click)="add_operator('^')">^</ion-button>
+          <ion-button  color="dark" (click)="add_operator('^')">^</ion-button>
         </ion-col> -->
         <!-- <ion-col>
-          <ion-button  color="light" (click)="add_operator('log')">LOGx(Y)</ion-button>
+          <ion-button  color="dark" (click)="add_operator('log')">LOGx(Y)</ion-button>
         </ion-col> -->
         <ion-col>
-          <ion-button color="light" (click)="add_operator('^')">^</ion-button>
+          <ion-button color="dark" (click)="add_operator('^')">^</ion-button>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col>
-          <ion-button color="dark" (click)="add_number(7)">7</ion-button>
+          <ion-button color="light" (click)="add_number(7)">7</ion-button>
         </ion-col>
         <ion-col>
-          <ion-button color="dark" (click)="add_number(8)">8</ion-button>
+          <ion-button color="light" (click)="add_number(8)">8</ion-button>
         </ion-col>
         <ion-col>
-          <ion-button color="dark" (click)="add_number(9)">9</ion-button>
+          <ion-button color="light" (click)="add_number(9)">9</ion-button>
         </ion-col>
         <ion-col>
-          <ion-button color="light" (click)="add_operator('/')">/</ion-button>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>
-          <ion-button color="dark" (click)="add_number(4)">4</ion-button>
-        </ion-col>
-        <ion-col>
-          <ion-button color="dark" (click)="add_number(5)">5</ion-button>
-        </ion-col>
-        <ion-col>
-          <ion-button color="dark" (click)="add_number(6)">6</ion-button>
-        </ion-col>
-        <ion-col>
-          <ion-button color="light" (click)="add_operator('*')">*</ion-button>
+          <ion-button color="dark" (click)="add_operator('/')">/</ion-button>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col>
-          <ion-button color="dark" (click)="add_number(1)">1</ion-button>
+          <ion-button color="light" (click)="add_number(4)">4</ion-button>
         </ion-col>
         <ion-col>
-          <ion-button color="dark" (click)="add_number(2)">2</ion-button>
+          <ion-button color="light" (click)="add_number(5)">5</ion-button>
         </ion-col>
         <ion-col>
-          <ion-button color="dark" (click)="add_number(3)">3</ion-button>
+          <ion-button color="light" (click)="add_number(6)">6</ion-button>
         </ion-col>
         <ion-col>
-          <ion-button color="light" (click)="add_operator('-')">-</ion-button>
+          <ion-button color="dark" (click)="add_operator('*')">*</ion-button>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col>
-          <ion-button color="dark" (click)="add_comma(',')">,</ion-button>
+          <ion-button color="light" (click)="add_number(1)">1</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button color="light" (click)="add_number(2)">2</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button color="light" (click)="add_number(3)">3</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button color="dark" (click)="add_operator('-')">-</ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button color="light" (click)="add_comma(',')">,</ion-button>
         </ion-col>
         <ion-col size="3">
-          <ion-button color="dark" (click)="add_number(0)">0</ion-button>
+          <ion-button color="light" (click)="add_number(0)">0</ion-button>
         </ion-col>
         <ion-col size="3">
-          <ion-button color="light" (click)="calculate(0)">=</ion-button>
+          <ion-button color="dark" (click)="calculate(0)">=</ion-button>
         </ion-col>
         <ion-col size="3">
-          <ion-button color="light" (click)="add_operator('+')">+</ion-button>
+          <ion-button color="dark" (click)="add_operator('+')">+</ion-button>
         </ion-col>
       </ion-row>
     </ion-grid>

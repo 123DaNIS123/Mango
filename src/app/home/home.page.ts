@@ -10,6 +10,8 @@ import { Router } from "@angular/router"
 
 import { DataService } from '../data.service';
 
+import { Clipboard } from '@capacitor/clipboard';
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -24,7 +26,7 @@ export class HomePage implements OnInit{
   should_calculate = false;
   equals_pressed = true;
 
-  is_minus = 1;
+  rExp: RegExp = /^[\+\-]?\d*\.?\d+(?:[Ee][\+\-]?\d+)?$/
 
   constructor(private ModalCtrl: ModalController, private dataService: DataService, private router: Router) { }
 
@@ -48,7 +50,7 @@ export class HomePage implements OnInit{
     //   console.log(this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp, "!)!)!)))!")
     //   this.is_c = true;
     //   this.is_first_number = false;}
-    else { this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp = (num*this.is_minus).toString();
+    else { this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp = num.toString();
       console.log(this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp, "!)!)!)))!");
       this.is_c = true;
       this.is_first_number = false;}
@@ -124,7 +126,6 @@ export class HomePage implements OnInit{
     this.is_c = false;
     // this.is_comma = false;
     this.operator = null;
-    this.is_minus = 1;
   }
 
   percent() {
@@ -169,7 +170,6 @@ export class HomePage implements OnInit{
     this.is_c = false;
     this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].firstval = 0;
     this.should_calculate = false;
-    this.is_minus = 1;
     // this.dataService.on_num_change(this.dataService.selectednum_array[0]);
     this.dataService.on_num_change(1);
     if (this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp == "NaN") {
@@ -182,7 +182,6 @@ export class HomePage implements OnInit{
       this.is_c = false;
       this.should_calculate = false;
       this.equals_pressed = true;
-      this.is_minus = 1;
     }
   }
 
@@ -231,6 +230,36 @@ export class HomePage implements OnInit{
     this.dataService.selectednum_index = 1
     this.router.navigateByUrl("/auto");
   }
+
+  writeToClipboard = async (num:number) => {
+    await Clipboard.write({
+      string: this.dataService.numbers_array[num].disp
+    });
+    // else if (num==10 || num==11) {
+    //   await Clipboard.write({
+    //     string: this.dataService.numbers_array[num[1]].disp + " " + this.dataService.numbers_array[num[1]].unit_type
+    //   });
+    // }
+  };
+
+  writeToClipboardAll = async (num:number) => {
+    await Clipboard.write({
+      string: this.dataService.numbers_array[num].disp + " " + this.dataService.numbers_array[num].unit_type
+    });
+  };
+
+  checkClipboard = async () => {
+    const { type, value } = await Clipboard.read();
+    if (type=="text/plain") {
+      if (this.rExp.test(value)){
+        this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp = value;
+        if (!this.equals_pressed) {this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].firstval = +value}
+        else {this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].val = +value}
+        this.dataService.on_num_change(1);
+      }
+    }
+    // console.log(`Got ${type} from clipboard: ${value}`);
+  };
 
   ngOnInit(): void {
     this.dataService.onStartFunc();

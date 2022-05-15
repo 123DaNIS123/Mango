@@ -44,9 +44,30 @@
 }
 
 .calc-display-left {
-  width: 100vw;
+  width: 57.3vw;
   height: 5vh;
   font-size: 3.8vh;
+}
+
+.copy-button-num {
+  width: 8vw;
+  height: 3vh;
+  margin: 1vh 2.7vw 1vh 0;  
+  font-size: 1.6vw;
+}
+
+.copy-button-all {
+  width: 13vw;
+  height: 3vh;
+  margin: 1vh 2.2vw 1vh 0;
+  font-size: 1.6vw;
+}
+
+.paste-button {
+  width: 9.6vw;
+  height: 3vh;
+  margin: 1vh 2.2vw 1vh 4.4vw;  
+  font-size: 1.6vw;
 }
 
 .calc-display-right {

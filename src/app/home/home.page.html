@@ -18,13 +18,19 @@
     <!-- style="height: 18%;" -->
     <div class="calc-display">
       <ion-col>
-        <ion-row (click)="onModalOpen(1)">
-          <ion-label class="calc-display-left">{{ dataService.numbers_array[1].unit_type }}:</ion-label>
-          <ion-label class="calc-display-right">{{ dataService.numbers_array[1].disp }}</ion-label>
+        <ion-row>
+          <ion-label (click)="onModalOpen(1)" class="calc-display-left">{{ dataService.numbers_array[1].unit_type }}:</ion-label>
+          <ion-button (click)="writeToClipboard(1)" class="copy-button-num" color="secondary">Copy</ion-button>
+          <ion-button (click)="writeToClipboardAll(1)" class="copy-button-all" color="secondary">Copy All</ion-button>
+          <ion-button (click)="checkClipboard(1)" class="paste-button" color="secondary">Paste</ion-button>
+          <ion-label (click)="onModalOpen(1)" class="calc-display-right">{{ dataService.numbers_array[1].disp }}</ion-label>
         </ion-row>
-        <ion-row (click)="onModalOpen(0)">
-          <ion-label class="calc-display-left">{{ dataService.numbers_array[0].unit_type }}:</ion-label>
-          <ion-label class="calc-display-right">{{ dataService.numbers_array[0].disp }}</ion-label>
+        <ion-row>
+          <ion-label (click)="onModalOpen(0)" class="calc-display-left">{{ dataService.numbers_array[0].unit_type }}:</ion-label>
+          <ion-button (click)="writeToClipboard(0)" class="copy-button-num" color="secondary">Copy</ion-button>
+          <ion-button (click)="writeToClipboardAll(0)" class="copy-button-all" color="secondary">Copy All</ion-button>
+          <ion-button (click)="checkClipboard(0)" class="paste-button" color="secondary">Paste</ion-button>
+          <ion-label (click)="onModalOpen(0)" class="calc-display-right">{{ dataService.numbers_array[0].disp }}</ion-label>
         </ion-row>
       </ion-col>
     </div>

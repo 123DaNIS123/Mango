@@ -8,10 +8,6 @@ import { UnitsTwoModalComponent } from '../units-two-modal/units-two-modal.compo
 
 import { Router } from "@angular/router"
 
-// import { stringify } from 'querystring';
-
-import { units} from '../units';
-
 import { DataService } from '../data.service';
 
 @Component({
@@ -27,6 +23,8 @@ export class HomePage implements OnInit{
   is_c = false;
   should_calculate = false;
   equals_pressed = true;
+
+  is_minus = 1;
 
   constructor(private ModalCtrl: ModalController, private dataService: DataService, private router: Router) { }
 
@@ -50,8 +48,8 @@ export class HomePage implements OnInit{
     //   console.log(this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp, "!)!)!)))!")
     //   this.is_c = true;
     //   this.is_first_number = false;}
-    else { this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp = num.toString();
-      console.log(this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp, "!)!)!)))!")
+    else { this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp = (num*this.is_minus).toString();
+      console.log(this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp, "!)!)!)))!");
       this.is_c = true;
       this.is_first_number = false;}
     // 
@@ -89,10 +87,10 @@ export class HomePage implements OnInit{
     }
     this.is_first_number = true;
     this.is_c = false;
-    this.equals_pressed = false;
     this.operator = str;
     this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].firstval = 0;
     this.should_calculate = false;
+    this.equals_pressed = false;
   }
 
   add_comma() {
@@ -115,7 +113,6 @@ export class HomePage implements OnInit{
       this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].firstval = 0;
       this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp = "0";
       this.dataService.on_num_change(1);
-      this.should_calculate = false;
     }
     else {
       this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].firstval = 0;
@@ -127,17 +124,22 @@ export class HomePage implements OnInit{
     this.is_c = false;
     // this.is_comma = false;
     this.operator = null;
+    this.is_minus = 1;
   }
 
   percent() {
-    this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].val /= 100;
-    this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp = this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].val.toString();
+    // this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].val /= 100;
+    this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp = (+this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp / 100).toString();
+    if (!this.equals_pressed) {this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].firstval = +this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp}
+    else {this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].val = +this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp}
     this.dataService.on_num_change(1);
   }
 
   plus_minus_switch() {
-    this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].val *= -1;
-    this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp = this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].val.toString();
+    // this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].val *= -1;
+    this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp = (+this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp * (-1)).toString();
+    if (!this.equals_pressed) {this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].firstval = +this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp}
+    else {this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].val = +this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp}
     this.dataService.on_num_change(1);
   }
  
@@ -158,12 +160,6 @@ export class HomePage implements OnInit{
       case "^":
         this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].val **= this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].firstval;
         break
-      case "+/-":
-        this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].val *= -1;
-        break
-      case "%":
-        this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].val /= 100;
-        break
     }
     if (source === 0) {
       this.equals_pressed = true      
@@ -173,8 +169,21 @@ export class HomePage implements OnInit{
     this.is_c = false;
     this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].firstval = 0;
     this.should_calculate = false;
+    this.is_minus = 1;
     // this.dataService.on_num_change(this.dataService.selectednum_array[0]);
     this.dataService.on_num_change(1);
+    if (this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp == "NaN") {
+      this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].val = 0;
+      this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].firstval = 0;
+      this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp = "0";
+      this.dataService.on_num_change(1);
+      this.operator = null;
+      this.is_first_number = true;
+      this.is_c = false;
+      this.should_calculate = false;
+      this.equals_pressed = true;
+      this.is_minus = 1;
+    }
   }
 
   // checkIfFloat() {
@@ -190,7 +199,7 @@ export class HomePage implements OnInit{
     if (num !== 0) { 
       this.presentTypeModal();}
     else if (this.dataService.selectedUnitsKeys.length !== 2)
-    {this.presentUnitsModal();}
+      {this.presentUnitsModal();}
     else {this.presentUnitsTwoModal();}
   }
 

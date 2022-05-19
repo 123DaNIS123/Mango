@@ -76,6 +76,10 @@ export class HomePage implements OnInit{
     //     this.is_c = true;
     //     this.is_first_number = false;}
     // }
+    this.disp_val_update()
+  }
+
+  disp_val_update() {
     if (!this.equals_pressed) {this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].firstval = +this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp}
     else {this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].val = +this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp}
     this.should_calculate = true;
@@ -185,6 +189,14 @@ export class HomePage implements OnInit{
     }
   }
 
+  delete() {
+    this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp = this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp.slice(0, this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp.length - 1)
+    if (this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp.length === 0) {
+      this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp = "0"
+    }
+    this.disp_val_update()
+  }
+
   // checkIfFloat() {
   //   // if (!Number.isInteger(this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp)) {
   //   if (this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp.indexOf(".") !== -1) {
@@ -226,10 +238,10 @@ export class HomePage implements OnInit{
     return await modal.present();
   }
 
-  goToPage() {
-    this.dataService.selectednum_index = 1
-    this.router.navigateByUrl("/auto");
-  }
+  // goToPage() {
+  //   this.dataService.selectednum_index = 1
+  //   this.router.navigateByUrl("/auto");
+  // }
 
   writeToClipboard = async (num:number) => {
     await Clipboard.write({

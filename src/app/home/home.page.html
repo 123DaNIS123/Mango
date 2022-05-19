@@ -1,11 +1,11 @@
 <ion-content>
   <div class="calc-main">
-    <ion-row>
+    <!-- <ion-row>
       <ion-col>
-        <!-- (click)="goToPage()"  -->
+        #(click)="goToPage()"
         <ion-button class="switch-button" color="tertiary">to AutoConverter</ion-button>
       </ion-col>
-    </ion-row>
+    </ion-row> -->
     <!-- <div class="units-selector">
       <ion-row>
         <ion-col>
@@ -46,7 +46,7 @@
           <ion-button color="dark" (click)="plus_minus_switch('+/-')">+/-</ion-button>
         </ion-col>
         <ion-col>
-          <ion-button color="dark" (click)="percent()">%</ion-button>
+          <ion-button color="dark" (click)="add_operator('^')">^</ion-button>
         </ion-col>
         <!-- <ion-col>
           <ion-button  color="dark" (click)="add_operator('^')">^</ion-button>
@@ -55,7 +55,8 @@
           <ion-button  color="dark" (click)="add_operator('log')">LOGx(Y)</ion-button>
         </ion-col> -->
         <ion-col>
-          <ion-button color="dark" (click)="add_operator('^')">^</ion-button>
+          <!-- <ion-button color="dark" (click)="percent()">%</ion-button> -->
+          <ion-button color="dark" (click)="delete()">Del</ion-button>
         </ion-col>
       </ion-row>
       <ion-row>

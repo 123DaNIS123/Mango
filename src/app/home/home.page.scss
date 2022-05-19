@@ -46,28 +46,31 @@
 .calc-display-left {
   width: 57.3vw;
   height: 5vh;
-  font-size: 3.8vh;
+  // font-size: 3.8vh;
+  font-size: 3vh;
 }
 
 .copy-button-num {
   width: 8vw;
   height: 3vh;
   margin: 1vh 2.7vw 1vh 0;  
-  font-size: 1.6vw;
+  // font-size: 1.6vw;
+  font-size: 2.2vw;
 }
 
 .copy-button-all {
   width: 13vw;
   height: 3vh;
   margin: 1vh 2.2vw 1vh 0;
-  font-size: 1.6vw;
+  font-size: 2.2vw;
 }
 
 .paste-button {
   width: 9.6vw;
   height: 3vh;
   margin: 1vh 2.2vw 1vh 4.4vw;  
-  font-size: 1.6vw;
+  // font-size: 1.6vw;
+  font-size: 2.2vw;
 }
 
 .calc-display-right {
@@ -106,6 +109,7 @@ ion-button {
   @media (min-aspect-ratio: 13/21) {
     font-size: 5vh;
   }
+  text-transform: none;
 }
 
 .switch-button {

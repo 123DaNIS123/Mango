@@ -28,6 +28,8 @@ export class HomePage implements OnInit{
 
   rExp: RegExp = /^[\+\-]?\d*\.?\d+(?:[Ee][\+\-]?\d+)?$/
 
+  expand_bool: boolean = false;
+
   constructor(private ModalCtrl: ModalController, private dataService: DataService, private router: Router) { }
 
   add_number(num: number) {
@@ -195,6 +197,10 @@ export class HomePage implements OnInit{
       this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp = "0"
     }
     this.disp_val_update()
+  }
+
+  toogle_bool() {
+    this.expand_bool = !this.expand_bool
   }
 
   // checkIfFloat() {

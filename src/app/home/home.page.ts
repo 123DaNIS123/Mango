@@ -29,6 +29,7 @@ export class HomePage implements OnInit{
   rExp: RegExp = /^[\+\-]?\d*\.?\d+(?:[Ee][\+\-]?\d+)?$/
 
   expand_bool: boolean = false;
+  delete_index: number = -1;
 
   constructor(private ModalCtrl: ModalController, private dataService: DataService, private router: Router) { }
 
@@ -202,6 +203,21 @@ export class HomePage implements OnInit{
   toogle_bool() {
     this.expand_bool = !this.expand_bool
   }
+
+  // When toogled:
+
+  add_number_toogled(str: string) {
+    this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp += str;
+    this.delete_index += 1;
+  }
+
+  delete_toogled() {
+    let str = this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp;
+    this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp = str.slice(0, this.delete_index) + str.slice(this.delete_index, this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp.length);
+    this.disp_val_update()
+  }
+
+  // .
 
   // checkIfFloat() {
   //   // if (!Number.isInteger(this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp)) {

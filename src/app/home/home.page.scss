@@ -33,14 +33,14 @@
 
 .calc-display {
   background-color: #f0f0f0;
-  height: 34vh;
+  height: 20vh;
 }
 
 .calc-display ion-col ion-row {
   margin-left: 0.25vw;
   margin-right: 0.25vw;
-  margin-top: 2vh;
-  margin-bottom: 4vh
+  margin-top: 0.5vh;
+  margin-bottom: 0vh;
 }
 
 .calc-display-left {
@@ -95,7 +95,7 @@
 // }
 
 .calc-grid {
-  margin: center center;
+  margin: 2vh 0 0 0;
 }
 
 ion-button {

@@ -48,37 +48,10 @@ export class HomePage implements OnInit{
         this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp = disp_read.slice(0, disp_read.indexOf("e")) + num.toString() + disp_read.slice(disp_read.indexOf("e"), disp_read.length)
       }
     }
-    // else if (this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp.indexOf(".") === -1) {
-    //   this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp = num.toString();
-    //   console.log(this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp, "!)!)!)))!")
-    //   this.is_c = true;
-    //   this.is_first_number = false;}
     else { this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp = num.toString();
       console.log(this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp, "!)!)!)))!");
       this.is_c = true;
       this.is_first_number = false;}
-    // 
-    // if (this.some_degree === 0) {
-    //   if (this.is_first_number === false) {
-    //     this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp += num.toString()}
-    //   else {
-    //     this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp = ""
-    //     this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp = num.toString();
-    //     console.log(this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp, "!)!)!)))!")
-    //     this.is_c = true;
-    //     this.is_first_number = false;}
-    //   }
-    // 
-    // else {
-    //   if (this.is_first_number === false) {
-    //   this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp += num.toString();}
-    //   else {
-    //     this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp = "0."
-    //     this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp = num.toString();
-    //     console.log(this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp, "!)!)!)))!")
-    //     this.is_c = true;
-    //     this.is_first_number = false;}
-    // }
     this.disp_val_update()
   }
 
@@ -111,10 +84,6 @@ export class HomePage implements OnInit{
       this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp += "."
     }
   }
-
-  // number_selecting(num: number) {
-  //   if (num !== 0) {this.dataService.selectednum_array[0] = num;}
-  // }
 
   clear(kind: string) {
     if (kind === "AC") {
@@ -202,6 +171,19 @@ export class HomePage implements OnInit{
 
   toogle_bool() {
     this.expand_bool = !this.expand_bool
+    if (this.expand_bool) {
+      this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp = "";
+    }
+    else {
+      this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp = "0";
+      this.should_calculate = false;
+      this.is_first_number = true;
+      this.is_c = false;
+      this.operator = null;
+      this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].val = 0;
+      this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].firstval = 0;
+    }
+    this.dataService.on_num_change(1);
   }
 
   // When toogled:
@@ -213,19 +195,37 @@ export class HomePage implements OnInit{
 
   delete_toogled() {
     let str = this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp;
-    this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp = str.slice(0, this.delete_index) + str.slice(this.delete_index, this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp.length);
-    this.disp_val_update()
+    if (this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp.length) {
+    this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp = str.slice(0, this.delete_index) + str.slice(this.delete_index + 1, this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp.length);
+    this.delete_index -= 1;
+    }
   }
 
-  // .
+  index_move(num: number) {
+    let len = this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp.length
+    if (this.delete_index >= 0 && this.delete_index <= len) {
+      this.delete_index += num
+    }
+  }
 
-  // checkIfFloat() {
-  //   // if (!Number.isInteger(this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp)) {
-  //   if (this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp.indexOf(".") !== -1) {
-  //     this.some_degree = this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp.length - this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp.indexOf(".")
-  //     console.log("CheckIfFloat: " + this.some_degree)
-  //   }
-  // }
+  clear_toogled() {
+    this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].val = 0;
+    this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].firstval = 0;
+    this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp = "";
+    this.dataService.on_num_change(1);
+    this.delete_index = -1;
+  }
+
+  calculate_toogled() {
+    let ans = this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp;
+    try {
+      this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp = eval(ans);
+    } catch(e) {
+      this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp = "";
+    }
+    this.dataService.on_num_change(1);
+  }
+
 
   onModalOpen(num: number) {
     this.dataService.selectedtrnum_array[0] = num;

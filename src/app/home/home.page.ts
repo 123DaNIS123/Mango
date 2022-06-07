@@ -29,7 +29,7 @@ export class HomePage implements OnInit{
   rExp: RegExp = /^[\+\-]?\d*\.?\d+(?:[Ee][\+\-]?\d+)?$/
 
   expand_bool: boolean = false;
-  delete_index: number = -1;
+  _delete_index: number = 0;
 
   constructor(private ModalCtrl: ModalController, private dataService: DataService, private router: Router) { }
 
@@ -188,8 +188,29 @@ export class HomePage implements OnInit{
 
   // When toogled:
 
-  add_number_toogled(str: string) {
-    this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp += str;
+  public get delete_index() {
+    return this._delete_index
+  }
+
+  public set delete_index(num: number) {
+    let len = this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp.length
+    console.log("before: "  + this._delete_index)
+    this._delete_index = num
+    console.log("after: "  + this._delete_index)
+    if (this._delete_index >= len) {
+      this._delete_index = len - 1
+      console.log("this._delete_index len")
+    }
+    if (this._delete_index < 0) {
+      this._delete_index = 0
+    }
+    console.log(this._delete_index)
+    console.log("len = " + len)
+  }
+
+  add_number_toogled(add_str: string) {
+    let str = this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp;
+    this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp = str.slice(0, this.delete_index + 1) + add_str + str.slice(this.delete_index + 1, this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp.length);
     this.delete_index += 1;
   }
 
@@ -198,14 +219,12 @@ export class HomePage implements OnInit{
     if (this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp.length) {
     this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp = str.slice(0, this.delete_index) + str.slice(this.delete_index + 1, this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp.length);
     this.delete_index -= 1;
+    console.log("Yes")
     }
   }
 
   index_move(num: number) {
-    let len = this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp.length
-    if (this.delete_index >= 0 && this.delete_index <= len) {
-      this.delete_index += num
-    }
+    this.delete_index +=num
   }
 
   clear_toogled() {
@@ -213,7 +232,7 @@ export class HomePage implements OnInit{
     this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].firstval = 0;
     this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp = "";
     this.dataService.on_num_change(1);
-    this.delete_index = -1;
+    this.delete_index = 0;
   }
 
   calculate_toogled() {

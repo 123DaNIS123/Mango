@@ -3,7 +3,7 @@
     <div class="calc-display">
       <ion-col>
         <ion-row>
-          <ion-label (click)="onModalOpen(1)" class="calc-display-left">{{ dataService.numbers_array[1].unit_type }}:</ion-label>
+          <ion-label id="theNumber" (click)="onModalOpen(1)" class="calc-display-left">{{ dataService.numbers_array[1].unit_type }}:</ion-label>
           <ion-button (click)="writeToClipboard(1)" class="copy-button-num" color="secondary">Copy</ion-button>
           <ion-button (click)="writeToClipboardAll(1)" class="copy-button-all" color="secondary">Copy All</ion-button>
           <ion-button (click)="checkClipboard(1)" class="paste-button" color="secondary">Paste</ion-button>

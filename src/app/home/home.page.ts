@@ -188,6 +188,19 @@ export class HomePage implements OnInit{
 
   // When toogled:
 
+  setCaret() {
+    var el = document.getElementById("theNumber")
+    var range = document.createRange()
+    var sel = window.getSelection()
+    
+    console.log("That el: " + el)
+    range.setStart(el, 1)
+    range.collapse(true)
+    
+    sel.removeAllRanges()
+    sel.addRange(range)
+}
+
   public get delete_index() {
     return this._delete_index
   }
@@ -204,6 +217,7 @@ export class HomePage implements OnInit{
     if (this._delete_index < 0) {
       this._delete_index = 0
     }
+    this.setCaret();
     console.log(this._delete_index)
     console.log("len = " + len)
   }

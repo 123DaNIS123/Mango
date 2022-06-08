@@ -164,7 +164,8 @@ export class HomePage implements OnInit{
   delete() {
     this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp = this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp.slice(0, this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp.length - 1)
     if (this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp.length === 0) {
-      this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp = "0"
+      this.clear("AC")
+      // this.dataService.selectedarray_array[0][this.dataService.selectednum_array[0]].disp = "0"
     }
     this.disp_val_update()
   }
